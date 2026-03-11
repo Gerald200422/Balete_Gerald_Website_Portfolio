@@ -1,6 +1,6 @@
-# React + TypeScript + Vite
+# Gerald Balete's Interactive 3D Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Welcome to my 3D animated, professional software developer portfolio! This project was built using high-performance React, TypeScript, and Framer Motion.
 
 Currently, two official plugins are available:
 
