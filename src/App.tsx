@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import emailjs from '@emailjs/browser';
 import { motion, useScroll, useSpring, useTransform, AnimatePresence, useAnimationFrame, useMotionValue } from 'framer-motion';
 import type { Variants } from 'framer-motion';
 import {
@@ -66,13 +67,29 @@ const App: React.FC = () => {
   // Contact Form State
   const [formStatus, setFormStatus] = useState<'idle' | 'sending' | 'sent'>('idle');
 
+  const formRef = useRef<HTMLFormElement>(null);
+
   const handleContactSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    if (!formRef.current) return;
+
     setFormStatus('sending');
-    // Simulate a network request for demo purposes (can be hooked to a real backend later)
-    setTimeout(() => {
+    
+    // NOTE: You must replace these strings with your actual EmailJS credentials!
+    emailjs.sendForm(
+      'service_i0dyd64', 
+      'template_5rclruy', 
+      formRef.current,
+      'bp1bhN7kxo_nJi-zh'
+    )
+    .then(() => {
       setFormStatus('sent');
-    }, 1500);
+      formRef.current?.reset();
+    }, (error) => {
+      console.log('FAILED...', error.text);
+      setFormStatus('idle');
+      alert('Failed to send the message. Please try again.');
+    });
   };
 
   // Projects Data
@@ -927,12 +944,12 @@ The goal is to create a more engaging, intuitive, and visually polished experien
                       <p style={{ marginTop: '0.5rem', color: 'var(--text-muted)' }}>Thanks for reaching out. I'll get back to you shortly.</p>
                     </motion.div>
                   ) : (
-                    <form onSubmit={handleContactSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                    <form ref={formRef} onSubmit={handleContactSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                       <div className="contact-form-grid">
-                        <input type="text" placeholder="Name" required className="apple-input" />
-                        <input type="email" placeholder="Email" required className="apple-input" />
+                        <input type="text" name="user_name" placeholder="Name" required className="apple-input" />
+                        <input type="email" name="user_email" placeholder="Email" required className="apple-input" />
                       </div>
-                      <textarea placeholder="Message" required rows={5} className="apple-input" style={{ resize: 'none' }}></textarea>
+                      <textarea placeholder="Message" name="message" required rows={5} className="apple-input" style={{ resize: 'none' }}></textarea>
                       <button
                         type="submit"
                         className="btn-primary"
