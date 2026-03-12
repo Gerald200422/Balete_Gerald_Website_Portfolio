@@ -54,6 +54,52 @@ const SectionHeader: React.FC<{ title: string; subtitle?: string; centered?: boo
   </motion.div>
 );
 
+// --- STATIC DATA ---
+const ROLES = [
+  "Passionate Software Developer", 
+  "Crafting clean, scalable applications", 
+  "Turning complex problems into elegant solutions",
+  "Continuous learner & tech enthusiast"
+];
+
+const PROJECTS = [
+  {
+    id: 1,
+    title: "Inventory & Sales Management",
+    subtitle: "Efficient stock & transaction tracking",
+    fullDesc: "A high-performance system designed for real-time inventory monitoring and seamless sales processing. Features include automated stock alerts, detailed financial reporting, and multi-user access control for enterprise scalability.",
+    image: "/inventory_management_preview_1773189975213.png"
+  },
+  {
+    id: 2,
+    title: "Optical Clinic Tracking",
+    subtitle: "Patient records & prescription management",
+    fullDesc: "A complete digitized solution for optometrists. Manage patient medical histories, track complex eye prescriptions over time, and handle appointment scheduling with an intuitive, medical-grade interface.",
+    image: "/optical_clinic_preview_1773190001297.png"
+  },
+  {
+    id: 3,
+    title: "Eli IT Solutions",
+    subtitle: "Comprehensive management suite",
+    fullDesc: "An all-in-one ecosystem for IT service providers. It combines system status monitoring, client support ticketing, and network infrastructure management into a single, unified professional dashboard.",
+    image: "/eli_it_solutions_preview_1773190023826.png"
+  },
+  {
+    id: 4,
+    title: "Email Sender Automation",
+    subtitle: "Streamlined bulk email workflows",
+    fullDesc: "Powering business communication through intelligent automation. Build complex email sequences, manage massive subscriber lists, and gain deep insights through real-time conversion and engagement analytics.",
+    image: "/email_automation_preview_1773190044706.png"
+  },
+  {
+    id: 5,
+    title: "Educational Platform",
+    subtitle: "Interactive learning environment",
+    fullDesc: "Bridging the gap between educators and students with a collaborative LMS. Supports high-fidelity video content, interactive quizzes, and personalized learning paths to enhance the academic digital journey.",
+    image: "/educational_platform_preview_1773190065146.png"
+  }
+];
+
 const App: React.FC = () => {
   const { scrollYProgress, scrollY } = useScroll();
   const scaleX = useSpring(scrollYProgress, { stiffness: 100, damping: 30, restDelta: 0.001 });
@@ -69,7 +115,7 @@ const App: React.FC = () => {
 
   const formRef = useRef<HTMLFormElement>(null);
 
-  const handleContactSubmit = (e: React.FormEvent) => {
+  const handleContactSubmit = React.useCallback((e: React.FormEvent) => {
     e.preventDefault();
     if (!formRef.current) return;
 
@@ -90,54 +136,10 @@ const App: React.FC = () => {
       setFormStatus('idle');
       alert('Failed to send the message. Please try again.');
     });
-  };
+  }, []);
 
   // Projects Data
-  const projects = [
-    {
-      id: 1,
-      title: "Inventory & Sales Management",
-      subtitle: "Efficient stock & transaction tracking",
-      fullDesc: "A high-performance system designed for real-time inventory monitoring and seamless sales processing. Features include automated stock alerts, detailed financial reporting, and multi-user access control for enterprise scalability.",
-      image: "/inventory_management_preview_1773189975213.png"
-    },
-    {
-      id: 2,
-      title: "Optical Clinic Tracking",
-      subtitle: "Patient records & prescription management",
-      fullDesc: "A complete digitized solution for optometrists. Manage patient medical histories, track complex eye prescriptions over time, and handle appointment scheduling with an intuitive, medical-grade interface.",
-      image: "/optical_clinic_preview_1773190001297.png"
-    },
-    {
-      id: 3,
-      title: "Eli IT Solutions",
-      subtitle: "Comprehensive management suite",
-      fullDesc: "An all-in-one ecosystem for IT service providers. It combines system status monitoring, client support ticketing, and network infrastructure management into a single, unified professional dashboard.",
-      image: "/eli_it_solutions_preview_1773190023826.png"
-    },
-    {
-      id: 4,
-      title: "Email Sender Automation",
-      subtitle: "Streamlined bulk email workflows",
-      fullDesc: "Powering business communication through intelligent automation. Build complex email sequences, manage massive subscriber lists, and gain deep insights through real-time conversion and engagement analytics.",
-      image: "/email_automation_preview_1773190044706.png"
-    },
-    {
-      id: 5,
-      title: "Educational Platform",
-      subtitle: "Interactive learning environment",
-      fullDesc: "Bridging the gap between educators and students with a collaborative LMS. Supports high-fidelity video content, interactive quizzes, and personalized learning paths to enhance the academic digital journey.",
-      image: "/educational_platform_preview_1773190065146.png"
-    }
-  ];
 
-  // Typewriter State
-  const roles = React.useMemo(() => [
-    "Passionate Software Developer", 
-    "Crafting clean, scalable applications", 
-    "Turning complex problems into elegant solutions",
-    "Continuous learner & tech enthusiast"
-  ], []);
   const [roleIndex, setRoleIndex] = useState(0);
   const [displayedText, setDisplayedText] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
@@ -148,7 +150,7 @@ const App: React.FC = () => {
   const xOffset = useMotionValue(-1900); // Start offset by 1 full set to allow instantaneous looping
   const hoverTimeout = React.useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  const handleMouseEnterCard = (id: string) => {
+  const handleMouseEnterCard = React.useCallback((id: string) => {
     // If a modal is already open, or currently transitioning (closing), ignore hover
     if (isTransitioning || hoveredCarouselId !== null) return;
 
@@ -156,16 +158,16 @@ const App: React.FC = () => {
     hoverTimeout.current = setTimeout(() => {
       setHoveredCarouselId(id);
     }, 200); // 200ms intentional delay avoids accidental swipe-opens
-  };
+  }, [isTransitioning, hoveredCarouselId]);
 
-  const handleMouseLeaveCard = () => {
+  const handleMouseLeaveCard = React.useCallback(() => {
     if (hoverTimeout.current) {
       clearTimeout(hoverTimeout.current);
       hoverTimeout.current = null;
     }
-  };
+  }, []);
 
-  const handleCloseModal = () => {
+  const handleCloseModal = React.useCallback(() => {
     if (hoveredCarouselId === null) return;
     setIsTransitioning(true);
     setHoveredCarouselId(null);
@@ -173,9 +175,9 @@ const App: React.FC = () => {
     setTimeout(() => {
       setIsTransitioning(false);
     }, 50); 
-  };
+  }, [hoveredCarouselId]);
 
-  useAnimationFrame((time, delta) => {
+  useAnimationFrame((_, delta) => {
     if (hoveredCarouselId === null) {
       let current = xOffset.get();
       // Move continuously from left to right (+x direction)
@@ -190,7 +192,7 @@ const App: React.FC = () => {
 
   useEffect(() => {
     let timer: ReturnType<typeof setTimeout>;
-    const currentRole = roles[roleIndex];
+    const currentRole = ROLES[roleIndex];
 
     if (isDeleting) {
       if (displayedText.length > 0) {
@@ -199,7 +201,7 @@ const App: React.FC = () => {
         }, 50); // fast backspacing
       } else {
         setIsDeleting(false);
-        setRoleIndex((prev) => (prev + 1) % roles.length);
+        setRoleIndex((prev) => (prev + 1) % ROLES.length);
       }
     } else {
       if (displayedText.length < currentRole.length) {
@@ -214,28 +216,22 @@ const App: React.FC = () => {
     }
 
     return () => clearTimeout(timer);
-  }, [displayedText, isDeleting, roleIndex, roles]);
+  }, [displayedText, isDeleting, roleIndex]);
 
   // Dismiss modal if user scrolls
   useEffect(() => {
     if (hoveredCarouselId === null) return;
 
-    const handleScroll = () => {
-      handleCloseModal();
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [hoveredCarouselId]);
+    window.addEventListener('scroll', handleCloseModal, { passive: true });
+    return () => window.removeEventListener('scroll', handleCloseModal);
+  }, [hoveredCarouselId, handleCloseModal]);
 
   // Generate 4 copies (20 items total) to fill the width of modern screens 
   // and completely cover the snapping boundaries invisibly.
   const carouselProjects = React.useMemo(() => {
     return Array.from({ length: 4 }).flatMap((_, setIndex) => 
-      projects.map(p => ({ ...p, carouselId: `${setIndex}-${p.id}` }))
+      PROJECTS.map(p => ({ ...p, carouselId: `${setIndex}-${p.id}` }))
     );
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
