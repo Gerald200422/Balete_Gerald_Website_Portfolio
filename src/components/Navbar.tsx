@@ -6,6 +6,7 @@ const Navbar: React.FC = () => {
     const [scrolled, setScrolled] = useState(false);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [hoveredLink, setHoveredLink] = useState<string | null>(null);
+    const [hoveredMobileLink, setHoveredMobileLink] = useState<string | null>(null);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -13,6 +14,16 @@ const Navbar: React.FC = () => {
         };
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
+
+    useEffect(() => {
+        const handleResize = () => {
+            if (window.innerWidth >= 769) {
+                setMobileMenuOpen(false);
+            }
+        };
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
     }, []);
 
     const navLinks = [
@@ -117,32 +128,46 @@ const Navbar: React.FC = () => {
                             top: '100%',
                             left: 0,
                             width: '100%',
-                            background: 'rgba(255, 255, 255, 0.95)',
+                            marginTop: '0.75rem',
+                            background: 'rgb(235, 235, 240)',
                             backdropFilter: 'saturate(180%) blur(20px)',
-                            borderBottom: '1px solid var(--border-soft)',
+                            WebkitBackdropFilter: 'saturate(180%) blur(20px)',
+                            borderBottom: '1px solid rgba(0,0,0,0.05)',
+                            borderRadius: '28px',
                             padding: '2rem',
                             display: 'flex',
                             flexDirection: 'column',
-                            gap: '1.5rem',
+                            gap: '0.75rem',
                             alignItems: 'center',
                             boxShadow: '0 20px 40px rgba(0,0,0,0.1)'
                         }}
                     >
-                        {navLinks.map((link) => (
-                            <a
-                                key={link.name}
-                                href={link.href}
-                                onClick={() => setMobileMenuOpen(false)}
-                                style={{
-                                    textDecoration: 'none',
-                                    color: 'var(--text-main)',
-                                    fontSize: '1.2rem',
-                                    fontWeight: 600,
-                                }}
-                            >
-                                {link.name}
-                            </a>
-                        ))}
+                        {navLinks.map((link) => {
+                            const isMobileHovered = hoveredMobileLink === link.name;
+                            return (
+                                <a
+                                    key={link.name}
+                                    href={link.href}
+                                    onClick={() => setMobileMenuOpen(false)}
+                                    onMouseEnter={() => setHoveredMobileLink(link.name)}
+                                    onMouseLeave={() => setHoveredMobileLink(null)}
+                                    style={{
+                                        textDecoration: 'none',
+                                        color: isMobileHovered ? '#ffffff' : 'var(--text-main)',
+                                        fontSize: '1.1rem',
+                                        fontWeight: 600,
+                                        width: '100%',
+                                        textAlign: 'center',
+                                        padding: '0.75rem 1.5rem',
+                                        borderRadius: '100px',
+                                        background: isMobileHovered ? 'var(--text-main)' : 'rgba(0,0,0,0.05)',
+                                        transition: 'background 0.3s ease, color 0.3s ease',
+                                    }}
+                                >
+                                    {link.name}
+                                </a>
+                            );
+                        })}
                         <a
                             href="#contact"
                             onClick={() => setMobileMenuOpen(false)}
