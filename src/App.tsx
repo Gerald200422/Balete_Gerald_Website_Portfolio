@@ -10,6 +10,7 @@ import {
 import Navbar from './components/Navbar';
 
 // --- ANIMATION VARIANTS ---
+// Collaboration: Gerald & Chalisterrald working on mobile responsiveness
 
 const blurReveal: Variants = {
   hidden: { opacity: 0, y: 30, filter: 'blur(12px)' },
