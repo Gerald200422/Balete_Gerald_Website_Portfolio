@@ -48,7 +48,7 @@ const flipIn: Variants = {
 
 // --- HELPER COMPONENTS ---
 const SectionHeader: React.FC<{ title: string; subtitle?: string; centered?: boolean }> = ({ title, subtitle, centered = true }) => (
-  <motion.div variants={blurReveal} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} style={{ marginBottom: '5rem', textAlign: centered ? 'center' : 'left' }}>
+  <motion.div variants={blurReveal} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} style={{ marginBottom: 'clamp(2.5rem, 8vw, 5.5rem)', textAlign: centered ? 'center' : 'left' }}>
     <h2 className="text-headline">{title}</h2>
     {subtitle && <p className="text-subhead" style={{ marginTop: '0.5rem', maxWidth: '600px', margin: centered ? '0.5rem auto 0 auto' : '0.5rem 0 0 0' }}>{subtitle}</p>}
   </motion.div>
@@ -144,10 +144,21 @@ const App: React.FC = () => {
   const [displayedText, setDisplayedText] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
 
-  // Projects Marquee State
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  const cardWidth = isMobile ? 280 : 350;
+  const gap = 30;
+  const loopWidth = (cardWidth + gap) * 5;
+
   const [hoveredCarouselId, setHoveredCarouselId] = useState<string | null>(null);
   const [isTransitioning, setIsTransitioning] = useState(false);
-  const xOffset = useMotionValue(-1900); // Start offset by 1 full set to allow instantaneous looping
+  const xOffset = useMotionValue(-loopWidth); // Start offset by 1 full set to allow instantaneous looping
   const hoverTimeout = React.useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const handleMouseEnterCard = React.useCallback((id: string) => {
@@ -182,9 +193,9 @@ const App: React.FC = () => {
       let current = xOffset.get();
       // Move continuously from left to right (+x direction)
       current += delta * 0.04; // Smooth, slow speed
-      // When we have shifted exactly 1 full track array (5 items * 380px = 1900px), snap back instantly
+      // When we have shifted exactly 1 full track array, snap back instantly
       if (current >= 0) {
-        current -= 1900;
+        current -= loopWidth;
       }
       xOffset.set(current);
     }
@@ -328,7 +339,6 @@ const App: React.FC = () => {
                     letterSpacing: '-0.02em',
                     textShadow: '0 4px 20px rgba(0,0,0,0.5)',
                     margin: 0,
-                    fontSize: 'clamp(2rem, 5vw, 4.5rem)',
                     lineHeight: 1.2
                   }}
                 >
@@ -568,7 +578,7 @@ const App: React.FC = () => {
         <section id="skills" style={{ background: 'var(--bg-light)', padding: '8rem 0' }}>
           <div className="container">
             <SectionHeader title="Technical Arsenal." subtitle="A diverse toolkit for the modern digital landscape." centered={false} />
-            <div className="bento-grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem' }}>
+            <div className="bento-grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem' }}>
 
               {[
                 { 
@@ -886,7 +896,6 @@ The goal is to create a more engaging, intuitive, and visually polished experien
                 style={{ 
                   position: 'relative',
                   zIndex: 1,
-                  padding: '5rem 4rem', 
                   textAlign: 'left', 
                   background: 'linear-gradient(135deg, rgba(255,255,255,0.95), rgba(255,255,255,0.8))', 
                   borderRadius: '32px',
@@ -896,7 +905,7 @@ The goal is to create a more engaging, intuitive, and visually polished experien
               >
                 {/* Left Side: Copy & Socials */}
                 <div>
-                  <h2 className="text-headline" style={{ fontSize: '3.2rem', letterSpacing: '-0.03em', lineHeight: 1.1 }}>Start a dialogue.</h2>
+                  <h2 className="text-headline" style={{ letterSpacing: '-0.03em', lineHeight: 1.1 }}>Start a dialogue.</h2>
                   <p className="text-subhead" style={{ marginTop: '1.5rem', marginBottom: '3rem', maxWidth: '400px', fontSize: '1.1rem' }}>
                     Have a project in mind, or an opportunity to explore? I'm ready to ship big ideas and build something extraordinary.
                   </p>

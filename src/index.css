@@ -171,9 +171,11 @@ body {
 
 .contact-layout {
   display: grid;
+  padding: 5rem 4rem;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 4rem;
   align-items: center;
+  padding: 5rem 4rem;
 }
 
 .contact-form-grid {
@@ -237,6 +239,12 @@ body {
     display: none;
   }
 
+  .contact-layout {
+    grid-template-columns: 1fr;
+    padding: 3rem 1.5rem;
+    gap: 2.5rem;
+  }
+
   .contact-form-grid {
     grid-template-columns: 1fr;
   }
@@ -246,22 +254,31 @@ body {
     padding-bottom: 2rem;
   }
 
+  /* Typography Adjustments */
+  .text-headline {
+    font-size: clamp(1.8rem, 5vw, 2.5rem) !important;
+  }
+
+  .text-hero {
+    font-size: clamp(2.5rem, 8vw, 4rem) !important;
+  }
+
   .apple-card,
   .apple-card-elevated {
     border-radius: 20px;
   }
 
   .apple-card h3 {
-    font-size: 1.8rem !important;
+    font-size: 1.5rem !important;
   }
 
   /* Padding adjustments for mobile cards */
   .mobile-p-2 {
-    padding: 2rem 2rem 0 2rem !important;
+    padding: 1.5rem 1.5rem 0 1.5rem !important;
   }
 
   .mobile-p-3 {
-    padding: 2rem !important;
+    padding: 1.5rem !important;
   }
 
   .hide-on-mobile {
@@ -273,11 +290,19 @@ body {
     min-height: auto;
     max-height: 90vh;
     overflow-y: auto;
+    width: 95vw !important;
+    margin: 0 auto;
   }
+
   .project-modal-child {
     width: 100%;
-    min-height: 250px;
+    min-height: 200px;
+    padding: 2rem !important;
   }
+  .container {
+    padding: 0 1.5rem;
+  }
+
   .project-card {
     width: 280px;
     height: 400px;

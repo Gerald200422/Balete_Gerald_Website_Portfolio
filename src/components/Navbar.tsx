@@ -45,7 +45,7 @@ const Navbar: React.FC = () => {
                 left: 0,
                 right: 0,
                 margin: '0 auto',
-                width: scrolled ? '100%' : 'calc(100% - 3rem)',
+                width: scrolled ? '100%' : 'calc(100% - clamp(1rem, 5vw, 3rem))',
                 maxWidth: scrolled ? '100%' : '1200px',
                 zIndex: 50,
                 transition: 'all 0.5s cubic-bezier(0.16, 1, 0.3, 1)',
