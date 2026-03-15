@@ -5,7 +5,7 @@ import type { Variants } from 'framer-motion';
 import {
   ArrowRight, Code, Github, Linkedin, Mail, Briefcase, Award, BookOpen,
   CheckCircle, Users, Zap, Clock, Target, Trophy, Star, Video, Settings, Globe,
-  ShieldCheck, FileCode, Presentation
+  ShieldCheck, FileCode, Presentation, X
 } from 'lucide-react';
 import Navbar from './components/Navbar';
 
@@ -98,6 +98,13 @@ const PROJECTS = [
     subtitle: "Interactive learning environment",
     fullDesc: "Bridging the gap between educators and students with a collaborative LMS. Supports high-fidelity video content, interactive quizzes, and personalized learning paths to enhance the academic digital journey.",
     image: "/educational_platform_preview_1773190065146.png"
+  },
+  {
+    id: 6,
+    title: "Online Loopwork Website",
+    subtitle: "Unified Multitasking & Productivity Suite",
+    fullDesc: "Architected & Contributed to the Version 2.0 interface for Loopwork, a powerful productivity platform for the company that integrates 16 essential multitasking tools into a single, cohesive experience. Focused on creating a high-performance landing page and intuitive user dashboard that streamlines complex workflows and enhances digital efficiency.",
+    image: "/loopwork_website_v2_mockup.png"
   }
 ];
 
@@ -155,7 +162,7 @@ const App: React.FC = () => {
 
   const cardWidth = isMobile ? 280 : 350;
   const gap = 30;
-  const loopWidth = (cardWidth + gap) * 5;
+  const loopWidth = (cardWidth + gap) * PROJECTS.length;
 
   const [hoveredCarouselId, setHoveredCarouselId] = useState<string | null>(null);
   const [isTransitioning, setIsTransitioning] = useState(false);
@@ -513,16 +520,54 @@ const App: React.FC = () => {
                       border: '1px solid var(--border-soft)',
                       borderRadius: '28px',
                       boxShadow: '0 50px 100px rgba(0,0,0,0.5)',
-                      pointerEvents: 'auto'
+                      pointerEvents: 'auto',
+                      position: 'relative',
+                      maxHeight: 'min(90vh, 800px)',
+                      display: 'flex',
+                      flexDirection: isMobile ? 'column' : 'row'
                     }}
                   >
+                    {/* Close Button */}
+                    <button 
+                      onClick={handleCloseModal}
+                      style={{ 
+                        position: 'absolute',
+                        top: '1.2rem',
+                        right: '1.2rem',
+                        zIndex: 2010,
+                        background: 'rgba(255,255,255,0.9)',
+                        backdropFilter: 'blur(10px)',
+                        border: '1px solid rgba(0,0,0,0.1)',
+                        borderRadius: '50%',
+                        width: '40px',
+                        height: '40px',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        cursor: 'pointer',
+                        boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
+                        color: 'var(--text-main)',
+                        transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)'
+                      }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.transform = 'scale(1.1)';
+                        e.currentTarget.style.background = 'white';
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.transform = 'scale(1)';
+                        e.currentTarget.style.background = 'rgba(255,255,255,0.9)';
+                      }}
+                    >
+                      <X size={20} />
+                    </button>
                     {/* Image Region Expanded */}
                     <motion.div 
                       className="project-modal-child"
                       style={{ 
                         position: 'relative', 
                         background: '#000',
-                        overflow: 'hidden'
+                        overflow: 'hidden',
+                        flex: isMobile ? '0 0 250px' : '1'
                       }}
                     >
                       <img 
@@ -537,11 +582,13 @@ const App: React.FC = () => {
                     <motion.div 
                       className="project-modal-child"
                       style={{ 
-                        padding: '3rem',
+                        padding: isMobile ? '2rem' : '3rem',
                         display: 'flex', 
                         flexDirection: 'column', 
                         background: 'white',
-                        justifyContent: 'center'
+                        justifyContent: 'center',
+                        overflowY: 'auto',
+                        flex: '1'
                       }}
                     >
                       <motion.h3 
@@ -713,9 +760,7 @@ const App: React.FC = () => {
                       <h4 style={{ fontSize: '1.4rem', fontWeight: 600 }}>Software Developer (Intern)</h4>
                       <p style={{ fontSize: '1.1rem', color: 'var(--text-muted)', margin: '0.2rem 0 1rem 0' }}>Inspire Next Global Inc. Jan 26 to Present</p>
                       <p style={{ color: 'var(--text-main)', fontSize: '1.05rem', lineHeight: 1.5 }}>
-                        Improving the Loopwork product’s user interface, focusing on its landing page and home page.
-The goal is to create a more engaging, intuitive, and visually polished experience for users.
-
+                        Leading the UI/UX enhancement of the Loopwork platform, specifically architecting the transition to Version 2.0. Focused on refining the landing page and core dashboard to deliver a more engaging, intuitive, and visually polished experience for users leveraging its 16 integrated multitasking tools.
                       </p>
                     </div>
                   </motion.div>
@@ -913,7 +958,7 @@ The goal is to create a more engaging, intuitive, and visually polished experien
                   
                   <div style={{ display: 'flex', gap: '1.5rem', marginTop: '3rem' }}>
                     <motion.a 
-                      href="mailto:gerald@example.com" 
+                      href="mailto:geraldbalete123@gmail.com" 
                       whileHover={{ y: -8, scale: 1.2, color: 'var(--primary)', filter: 'drop-shadow(0px 10px 10px rgba(0, 102, 204, 0.4))' }}
                       transition={{ type: "spring", stiffness: 400, damping: 17 }}
                       style={{ color: 'var(--text-main)', display: 'inline-block' }}
@@ -921,7 +966,9 @@ The goal is to create a more engaging, intuitive, and visually polished experien
                       <Mail size={32} />
                     </motion.a>
                     <motion.a 
-                      href="#" 
+                      href="https://github.com/Gerald200422" 
+                      target="_blank"
+                      rel="noopener noreferrer"
                       whileHover={{ y: -8, scale: 1.2, color: 'var(--primary)', filter: 'drop-shadow(0px 10px 10px rgba(0, 102, 204, 0.4))' }}
                       transition={{ type: "spring", stiffness: 400, damping: 17 }}
                       style={{ color: 'var(--text-main)', display: 'inline-block' }}
