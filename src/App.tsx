@@ -760,7 +760,7 @@ const App: React.FC = () => {
                       <h4 style={{ fontSize: '1.4rem', fontWeight: 600 }}>Software Developer (Intern)</h4>
                       <p style={{ fontSize: '1.1rem', color: 'var(--text-muted)', margin: '0.2rem 0 1rem 0' }}>Inspire Next Global Inc. Jan 26 to Present</p>
                       <p style={{ color: 'var(--text-main)', fontSize: '1.05rem', lineHeight: 1.5 }}>
-                        Leading the UI/UX enhancement of the Loopwork platform, specifically architecting the transition to Version 2.0. Focused on refining the landing page and core dashboard to deliver a more engaging, intuitive, and visually polished experience for users leveraging its 16 integrated multitasking tools.
+                        Contributed to the UI/UX enhancement of the Loopwork platform, specifically architecting the transition to Version 2.0. Focused on refining the landing page and core dashboard to deliver a more engaging, intuitive, and visually polished experience for users leveraging its 16 integrated multitasking tools.
                       </p>
                     </div>
                   </motion.div>
