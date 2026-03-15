@@ -196,16 +196,15 @@ body {
 /* Projects Modal Layout */
 .project-modal {
   width: 90vw;
-  max-width: 850px;
+  max-width: 900px;
   height: auto;
-  min-height: 480px;
+  max-height: 90vh;
   display: flex;
   flex-direction: row;
 }
 .project-modal-child {
   width: 50%;
   height: auto;
-  min-height: 480px;
 }
 .project-card {
   width: 350px;
@@ -296,8 +295,6 @@ body {
 
   .project-modal-child {
     width: 100%;
-    min-height: 200px;
-    padding: 2rem !important;
   }
   .container {
     padding: 0 1.5rem;
