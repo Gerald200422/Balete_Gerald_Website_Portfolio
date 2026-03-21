@@ -65,38 +65,24 @@ const ROLES = [
 
 const PROJECTS = [
   {
-    id: 1,
-    title: "Inventory & Sales Management",
-    subtitle: "Efficient stock & transaction tracking",
-    fullDesc: "A high-performance system designed for real-time inventory monitoring and seamless sales processing. Features include automated stock alerts, detailed financial reporting, and multi-user access control for enterprise scalability.",
-    image: "/inventory_management_preview_1773189975213.png"
-  },
-  {
     id: 2,
-    title: "Optical Clinic Tracking",
-    subtitle: "Patient records & prescription management",
-    fullDesc: "A complete digitized solution for optometrists. Manage patient medical histories, track complex eye prescriptions over time, and handle appointment scheduling with an intuitive, medical-grade interface.",
+    title: "Optical Clinic Online System",
+    subtitle: "Complete Multi-Branch Clinic Management",
+    fullDesc: "A comprehensive multi-branch management system for North Vision Optical Clinic (Manila, Cebu, Davao). Streamlining operations beyond manual inputs with a dynamic dashboard, branch-specific tracking, sales and inventory management, customer records, role-based access, audit trails, and repair tracking.",
     image: "/optical_clinic_preview_1773190001297.png"
   },
   {
-    id: 3,
-    title: "Eli IT Solutions",
-    subtitle: "Comprehensive management suite",
-    fullDesc: "An all-in-one ecosystem for IT service providers. It combines system status monitoring, client support ticketing, and network infrastructure management into a single, unified professional dashboard.",
-    image: "/eli_it_solutions_preview_1773190023826.png"
-  },
-  {
     id: 4,
-    title: "Email Sender Automation",
-    subtitle: "Streamlined bulk email workflows",
-    fullDesc: "Powering business communication through intelligent automation. Build complex email sequences, manage massive subscriber lists, and gain deep insights through real-time conversion and engagement analytics.",
+    title: "Email Sender Automation System",
+    subtitle: "High-Volume Outreach & Analytics",
+    fullDesc: "A custom-built automated email system designed to eliminate time-consuming manual outreach for sales teams. This solution enables faster, more precise communication with company customers through intelligent automation workflows and real-time engagement analytics.",
     image: "/email_automation_preview_1773190044706.png"
   },
   {
     id: 5,
-    title: "Educational Platform",
-    subtitle: "Interactive learning environment",
-    fullDesc: "Bridging the gap between educators and students with a collaborative LMS. Supports high-fidelity video content, interactive quizzes, and personalized learning paths to enhance the academic digital journey.",
+    title: "EduQualitech System",
+    subtitle: "Collaborative Academic Ecosystem",
+    fullDesc: "A Hackathon-winning comprehensive learning platform designed to bridge educational gaps. Features include book donation modules, direct professor outreach, and event coordination for free tutoring, specifically aimed at supporting children with limited access to formal schooling.",
     image: "/educational_platform_preview_1773190065146.png"
   },
   {
@@ -104,7 +90,8 @@ const PROJECTS = [
     title: "Online Loopwork Website",
     subtitle: "Unified Multitasking & Productivity Suite",
     fullDesc: "Architected & Contributed to the Version 2.0 interface for Loopwork, a powerful productivity platform for the company that integrates 16 essential multitasking tools into a single, cohesive experience. Focused on creating a high-performance landing page and intuitive user dashboard that streamlines complex workflows and enhances digital efficiency.",
-    image: "/loopwork_website_v2_mockup.png"
+    image: "/loopwork_website_v2_mockup.png",
+    projectLink: "https://www.inspire-loopwork.com/landingpage"
   }
 ];
 
@@ -165,6 +152,7 @@ const App: React.FC = () => {
   const loopWidth = (cardWidth + gap) * PROJECTS.length;
 
   const [hoveredCarouselId, setHoveredCarouselId] = useState<string | null>(null);
+  const [isUserInteracting, setIsUserInteracting] = useState(false);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const xOffset = useMotionValue(-loopWidth); // Start offset by 1 full set to allow instantaneous looping
   const hoverTimeout = React.useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -197,7 +185,7 @@ const App: React.FC = () => {
   }, [hoveredCarouselId]);
 
   useAnimationFrame((_time, delta) => {
-    if (hoveredCarouselId === null) {
+    if (hoveredCarouselId === null && !isUserInteracting) {
       let current = xOffset.get();
       // Move continuously from left to right (+x direction)
       current += delta * 0.04; // Smooth, slow speed
@@ -408,12 +396,24 @@ const App: React.FC = () => {
           <div className="project-carousel-container" style={{ overflow: hoveredCarouselId ? 'visible' : 'hidden' }}>
             
             <motion.div
+              drag="x"
+              dragConstraints={{ left: -loopWidth * 3, right: 0 }}
+              onDragStart={() => setIsUserInteracting(true)}
+              onDragEnd={() => {
+                setIsUserInteracting(false);
+                // Ensure we stay within the loop boundaries after drag
+                let current = xOffset.get();
+                while (current > 0) current -= loopWidth;
+                while (current < -loopWidth) current += loopWidth;
+                xOffset.set(current);
+              }}
               style={{ 
                 x: xOffset,
                 display: 'flex', 
                 gap: '30px', 
                 width: 'max-content',
-                willChange: 'transform' // Hardware acceleration
+                willChange: 'transform', // Hardware acceleration
+                cursor: isUserInteracting ? 'grabbing' : 'grab'
               }}
             >
               {carouselProjects.map((project) => {
@@ -578,8 +578,20 @@ const App: React.FC = () => {
                         >
                           <p style={{ fontSize: '1rem', color: 'var(--text-muted)', lineHeight: 1.7, fontWeight: 500 }}>{activeProject.fullDesc}</p>
                           
-                          <div style={{ marginTop: '2.5rem', display: 'flex', alignItems: 'center', gap: '0.75rem', color: 'var(--primary)', fontWeight: 700, fontSize: '1rem', cursor: 'pointer' }}>
-                            EXPLORE CASE STUDY <ArrowRight size={20} />
+                          <div 
+                            onClick={() => activeProject.projectLink && window.open(activeProject.projectLink, '_blank')}
+                            style={{ 
+                              marginTop: '2.5rem', 
+                              display: 'flex', 
+                              alignItems: 'center', 
+                              gap: '0.75rem', 
+                              color: 'var(--primary)', 
+                              fontWeight: 700, 
+                              fontSize: '1rem', 
+                              cursor: activeProject.projectLink ? 'pointer' : 'default' 
+                            }}
+                          >
+                            {activeProject.projectLink ? 'VISIT WEBSITE' : 'EXPLORE CASE STUDY'} <ArrowRight size={20} />
                           </div>
                         </motion.div>
                       </div>
