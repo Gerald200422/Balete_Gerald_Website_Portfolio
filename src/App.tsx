@@ -11,6 +11,7 @@ import Experience from './components/Experience';
 import Awards from './components/Awards';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import BackToTop from './components/BackToTop';
 
 // --- SHARED ANIMATION VARIANTS ---
 export const blurReveal: Variants = {
@@ -120,6 +121,7 @@ const App: React.FC = () => {
       </main>
 
       <Footer />
+      <BackToTop />
     </div>
   );
 };
