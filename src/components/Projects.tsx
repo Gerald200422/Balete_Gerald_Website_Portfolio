@@ -9,28 +9,28 @@ export const PROJECTS = [
     title: "Optical Clinic Online System",
     subtitle: "Complete Multi-Branch Clinic Management",
     fullDesc: "A comprehensive multi-branch management system for North Vision Optical Clinic (Manila, Cebu, Davao). Streamlining operations beyond manual inputs with a dynamic dashboard, branch-specific tracking, sales and inventory management, customer records, role-based access, audit trails, and repair tracking.",
-    image: "/optical_clinic_preview_1773190001297.png"
+    image: "/project_nvoc_system.png"
   },
   {
     id: 4,
     title: "Email Sender Automation System",
     subtitle: "High-Volume Outreach & Analytics",
     fullDesc: "A custom-built automated email system designed to eliminate time-consuming manual outreach for sales teams. This solution enables faster, more precise communication with company customers through intelligent automation workflows and real-time engagement analytics.",
-    image: "/email_automation_preview_1773190044706.png"
+    image: "/project_email_sender_autonomation.png"
   },
   {
     id: 5,
     title: "EduQualitech System",
     subtitle: "Collaborative Academic Ecosystem",
     fullDesc: "A Hackathon-winning comprehensive learning platform designed to bridge educational gaps. Features include book donation modules, direct professor outreach, and event coordination for free tutoring, specifically aimed at supporting children with limited access to formal schooling.",
-    image: "/educational_platform_preview_1773190065146.png"
+    image: "/project_eduqualitech_system.png"
   },
   {
     id: 6,
     title: "Online Loopwork Website",
     subtitle: "Unified Multitasking & Productivity Suite",
     fullDesc: "Architected & Contributed to the Version 2.0 interface for Loopwork, a powerful productivity platform for the company that integrates 16 essential multitasking tools into a single, cohesive experience. Focused on creating a high-performance landing page and intuitive user dashboard that streamlines complex workflows and enhances digital efficiency.",
-    image: "/loopwork_website_v2_mockup.png",
+    image: "/project_loopwork_v2.png",
     projectLink: "https://www.inspire-loopwork.com/landingpage"
   }
 ];
