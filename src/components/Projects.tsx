@@ -102,7 +102,7 @@ const Projects: React.FC = () => {
   }, []);
 
   return (
-    <section id="projects" style={{ background: 'var(--bg-card)', padding: '8rem 0', position: 'relative', zIndex: hoveredCarouselId ? 40 : 10, overflow: hoveredCarouselId ? 'visible' : 'hidden' }}>
+    <section id="projects" style={{ padding: '8rem 0', position: 'relative', zIndex: hoveredCarouselId ? 40 : 10, overflow: hoveredCarouselId ? 'visible' : 'hidden' }}>
       
       <AnimatePresence>
         {hoveredCarouselId && (

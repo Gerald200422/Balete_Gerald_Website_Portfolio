@@ -5,7 +5,7 @@ import { SectionHeader, slideInLeft, slideInRight } from '../App';
 
 const Experience: React.FC = () => {
   return (
-    <section id="experience" style={{ background: 'var(--bg-light)', padding: '8rem 0' }}>
+    <section id="experience" style={{ padding: '8rem 0' }}>
       <div className="container">
         <div className="two-col-grid">
 

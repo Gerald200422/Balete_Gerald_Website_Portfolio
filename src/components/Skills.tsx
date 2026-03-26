@@ -10,7 +10,7 @@ const Skills: React.FC = () => {
   return (
     <>
       {/* --- TECHNICAL SKILLS --- */}
-      <section id="skills" style={{ background: 'var(--bg-light)', padding: '8rem 0' }}>
+      <section id="skills" style={{ padding: '8rem 0' }}>
         <div className="container">
           <SectionHeader title="Technical Arsenal." subtitle="A diverse toolkit for the modern digital landscape." centered={false} />
           <div className="bento-grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem' }}>
@@ -74,7 +74,7 @@ const Skills: React.FC = () => {
       </section>
 
       {/* --- SOFT SKILLS & PHILOSOPHY --- */}
-      <section id="soft-skills" style={{ background: 'var(--bg-card)', padding: '8rem 0' }}>
+      <section id="soft-skills" style={{ padding: '8rem 0' }}>
         <div className="container">
           <SectionHeader title="Soft Skills." subtitle="The human side of engineering." />
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1.5rem' }}>

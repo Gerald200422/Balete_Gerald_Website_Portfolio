@@ -74,44 +74,44 @@ const App: React.FC = () => {
 
       <Navbar />
 
-      <main style={{ position: 'relative' }}>
-        {/* --- SCROLLING OBJECT --- */}
-        <motion.div
-          className="hide-on-mobile"
-          style={{
-            position: 'absolute',
-            top: '25%',
-            right: '5%',
-            y: floatingY,
-            rotate: floatingRotate,
-            scale: floatingScale,
-            opacity: floatingOpacity,
-            zIndex: 5,
-            pointerEvents: 'none',
-          }}
-        >
-          <div className="apple-card-elevated" style={{ 
-            padding: '1.2rem', 
-            background: 'linear-gradient(135deg, rgba(255,255,255,0.8), rgba(255,255,255,0.3))', 
-            backdropFilter: 'blur(30px) saturate(150%)', 
-            borderRadius: '24px', 
-            display: 'flex', 
-            alignItems: 'center', 
-            justifyContent: 'center', 
-            boxShadow: '0 30px 60px -12px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.9), inset 0 -1px 0 rgba(0,0,0,0.1)',
-            border: '1px solid rgba(255,255,255,0.5)',
-            transformStyle: 'preserve-3d'
-          }}>
-            <motion.div 
-              animate={{ rotateY: 360 }} 
-              transition={{ repeat: Infinity, duration: 6, ease: "linear" }}
-              style={{ display: 'flex' }}
-            >
-              <BookOpen size={36} style={{ color: 'var(--primary)', filter: 'drop-shadow(0px 10px 10px rgba(0,102,204,0.4))' }} strokeWidth={2} />
-            </motion.div>
-          </div>
-        </motion.div>
+      {/* --- SCROLLING OBJECT --- */}
+      <motion.div
+        className="hide-on-mobile"
+        style={{
+          position: 'absolute',
+          top: '25%',
+          right: '5%',
+          y: floatingY,
+          rotate: floatingRotate,
+          scale: floatingScale,
+          opacity: floatingOpacity,
+          zIndex: 5,
+          pointerEvents: 'none',
+        }}
+      >
+        <div className="apple-card-elevated" style={{ 
+          padding: '1.2rem', 
+          background: 'linear-gradient(135deg, rgba(255,255,255,0.8), rgba(255,255,255,0.3))', 
+          backdropFilter: 'blur(30px) saturate(150%)', 
+          borderRadius: '24px', 
+          display: 'flex', 
+          alignItems: 'center', 
+          justifyContent: 'center', 
+          boxShadow: '0 30px 60px -12px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.9), inset 0 -1px 0 rgba(0,0,0,0.1)',
+          border: '1px solid rgba(255,255,255,0.5)',
+          transformStyle: 'preserve-3d'
+        }}>
+          <motion.div 
+            animate={{ rotateY: 360 }} 
+            transition={{ repeat: Infinity, duration: 6, ease: "linear" }}
+            style={{ display: 'flex' }}
+          >
+            <BookOpen size={36} style={{ color: 'var(--primary)', filter: 'drop-shadow(0px 10px 10px rgba(0,102,204,0.4))' }} strokeWidth={2} />
+          </motion.div>
+        </div>
+      </motion.div>
 
+      <main style={{ position: 'relative' }}>
         <Hero />
         <Projects />
         <Skills />

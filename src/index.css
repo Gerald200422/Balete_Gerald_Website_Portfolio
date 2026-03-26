@@ -58,7 +58,7 @@ body {
 
 /* Typography */
 .text-hero {
-  font-size: clamp(3.5rem, 10vw, 6.5rem);
+  font-size: clamp(2.5rem, 8vw, 4.5rem);
   font-weight: 800;
   letter-spacing: -0.05em;
   color: var(--text-main);
@@ -88,6 +88,75 @@ body {
 
 .section {
   padding: 8rem 0;
+}
+
+/* Alternating Background Striping */
+main>section:nth-child(odd) {
+  background-color: var(--bg-light) !important;
+}
+
+main>section:nth-child(even) {
+  background-color: var(--bg-card) !important;
+}
+
+/* Achievement Golden Brown Border Glow & Light Effect */
+.award-card-gold {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  border: 1.5px solid var(--border-soft) !important; /* Base border */
+}
+
+.award-card-gold:hover {
+  border-color: #B8860B !important; /* Golden Brown */
+  box-shadow: 0 0 15px rgba(184, 134, 11, 0.4) !important; /* Focused border glow */
+}
+
+.glitter-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    transparent 40%,
+    rgba(255, 255, 255, 0.2) 50%,
+    transparent 60%
+  );
+  background-size: 200% 200%;
+  opacity: 0;
+  transition: opacity 0.8s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.award-card-gold:hover .glitter-overlay {
+  opacity: 1;
+  animation: shimmer-light 3s infinite linear;
+}
+
+@keyframes shimmer-light {
+  0% { background-position: -200% -200%; }
+  100% { background-position: 200% 200%; }
+}
+
+/* Subtle Glitter */
+.glitter-particles {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, #B8860B 0.5px, transparent 1px);
+  background-size: 30px 30px;
+  opacity: 0;
+  transition: opacity 0.8s ease;
+  z-index: 1;
+}
+
+.award-card-gold:hover .glitter-particles {
+  opacity: 0.1;
+  animation: glitter-twinkle-light 2s infinite alternate;
+}
+
+@keyframes glitter-twinkle-light {
+  0% { opacity: 0.05; }
+  100% { opacity: 0.15; }
 }
 
 .btn-primary {
@@ -204,7 +273,7 @@ body {
   border-radius: 32px;
   overflow: hidden;
   position: relative;
-  box-shadow: 0 50px 100px rgba(0,0,0,0.3);
+  box-shadow: 0 50px 100px rgba(0, 0, 0, 0.3);
   pointer-events: auto;
 }
 
@@ -333,7 +402,8 @@ body {
   .project-modal-content-container {
     width: 100%;
     padding: 2rem;
-    overflow-y: visible; /* Scroll the main modal instead */
+    overflow-y: visible;
+    /* Scroll the main modal instead */
     flex: 1;
   }
 
@@ -342,6 +412,7 @@ body {
     .project-modal {
       max-height: 95vh;
     }
+
     .project-modal-image-container {
       height: 180px;
     }
