@@ -82,7 +82,7 @@ const Hero: React.FC = () => {
       <div className="container" style={{ textAlign: 'center', position: 'relative', zIndex: 2, width: '100%', padding: '0 2rem' }}>
         <motion.div initial="hidden" animate="visible" variants={staggerContainer}>
           
-          <div style={{ position: 'relative', display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '140px' }}>
+          <div style={{ position: 'relative', display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '120px' }}>
             <h1
               className="text-hero"
               style={{ 

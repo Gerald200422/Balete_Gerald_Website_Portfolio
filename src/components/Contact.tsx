@@ -32,7 +32,7 @@ const Contact: React.FC = () => {
   }, []);
 
   return (
-    <section id="contact" style={{ background: 'var(--bg-light)', padding: '4rem 0 12rem 0' }}>
+    <section id="contact" style={{ padding: '4rem 0 12rem 0' }}>
       <div className="container">
         <motion.div
           variants={zoomIn}

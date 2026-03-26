@@ -1,11 +1,50 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion, type Variants } from 'framer-motion';
 import { Star, Video, Trophy, Users } from 'lucide-react';
 import { SectionHeader, flipIn } from '../App';
 
 const Awards: React.FC = () => {
+  const iconVariants: Record<string, Variants> = {
+    star: {
+      hover: { 
+        scale: [1, 1.3, 1],
+        opacity: [1, 0.5, 1],
+        transition: { repeat: Infinity, duration: 1, ease: "easeInOut" }
+      }
+    },
+    video: {
+      hover: { 
+        scale: 1.2,
+        rotate: [0, -5, 5, -5, 0],
+        transition: { repeat: Infinity, duration: 0.8 }
+      }
+    },
+    trophy: {
+      hover: { 
+        y: -10,
+        scale: 1.25,
+        rotateY: 360,
+        transition: { duration: 0.8, ease: "backOut" }
+      }
+    },
+    users: {
+      hover: { 
+        scale: 1.2,
+        y: [0, -5, 0],
+        transition: { repeat: Infinity, duration: 0.6, ease: "easeInOut" }
+      }
+    }
+  };
+
+  const getVariant = (title: string) => {
+    if (title.includes("Star") || title.includes("List")) return iconVariants.star;
+    if (title.includes("Video")) return iconVariants.video;
+    if (title.includes("Trophy") || title.includes("Analytics")) return iconVariants.trophy;
+    return iconVariants.users;
+  };
+
   return (
-    <section id="awards" style={{ background: 'var(--bg-card)', padding: '8rem 0' }}>
+    <section id="awards" style={{ padding: '8rem 0' }}>
       <div className="container">
         <SectionHeader title="Accolades." subtitle="Milestones of excellence." />
         <div className="bento-grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '2rem' }}>
@@ -20,14 +59,11 @@ const Awards: React.FC = () => {
               variants={flipIn}
               initial="hidden"
               whileInView="visible"
+              whileHover="hover"
               viewport={{ once: true }}
-              whileHover={{ 
-                y: -15, 
-                scale: 1.03,
-                boxShadow: '0 40px 80px -20px rgba(0,0,0,0.15), inset 0 1px 0 rgba(255,255,255,1)' 
-              }}
+              whileTap={{ scale: 0.98 }}
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
-              className="apple-card-elevated"
+              className="apple-card-elevated award-card-gold"
               style={{ 
                 padding: '2.5rem', 
                 display: 'flex', 
@@ -36,12 +72,14 @@ const Awards: React.FC = () => {
                 alignItems: 'center', 
                 textAlign: 'center',
                 background: 'var(--bg-light)',
-                border: '1px solid var(--border-soft)'
+                border: '1px solid var(--border-soft)',
+                cursor: 'pointer'
               }}
             >
+              <div className="glitter-overlay" />
+              <div className="glitter-particles" />
               <motion.div 
-                whileHover={{ scale: 1.3, rotateZ: [0, -10, 10, -10, 0] }}
-                transition={{ duration: 0.5 }}
+                variants={getVariant(award.title)}
                 style={{ color: 'var(--primary)', marginBottom: '0.5rem' }}
               >
                 {award.icon}
