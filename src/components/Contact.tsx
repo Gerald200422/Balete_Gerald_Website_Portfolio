@@ -16,10 +16,10 @@ const Contact: React.FC = () => {
     
     // Credentials from original App.tsx
     emailjs.sendForm(
-      'service_i0dyd64', 
-      'template_5rclruy', 
+      import.meta.env.VITE_EMAILJS_SERVICE_ID, 
+      import.meta.env.VITE_EMAILJS_TEMPLATE_ID, 
       formRef.current,
-      'bp1bhN7kxo_nJi-zh'
+      import.meta.env.VITE_EMAILJS_PUBLIC_KEY
     )
     .then(() => {
       setFormStatus('sent');
