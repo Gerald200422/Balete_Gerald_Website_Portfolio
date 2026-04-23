@@ -37,7 +37,7 @@ const Experience: React.FC = () => {
                   <h4 style={{ fontSize: '1.4rem', fontWeight: 600 }}>Software Developer (Intern)</h4>
                   <p style={{ fontSize: '1.1rem', color: 'var(--text-muted)', margin: '0.2rem 0 0.2rem 0' }}>Inspire Next Global Inc. | Jan 26 to Present</p>
                   <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)', margin: '0 0 1rem 0', fontStyle: 'italic', opacity: 0.8 }}>
-                    MAIN OFFICE: 6F Alliance Global Tower, 11th Avenue, corner 36th St, BGC, Taguig, Metro Manila, Philippines.
+                    MAIN OFFICE: BGC, Taguig, Metro Manila, Philippines.
                   </p>
                   <p style={{ color: 'var(--text-main)', fontSize: '1.05rem', lineHeight: 1.5 }}>
                     Contributed to the UI/UX enhancement of the Loopwork platform, specifically architecting the transition to Version 2.0. Focused on refining the landing page and core dashboard to deliver a more engaging, intuitive, and visually polished experience for users leveraging its 16 integrated multitasking tools.
@@ -69,7 +69,7 @@ const Experience: React.FC = () => {
                   <h4 style={{ fontSize: '1.4rem', fontWeight: 600 }}>Quality Assurance (QA)</h4>
                   <p style={{ fontSize: '1.1rem', color: 'var(--text-muted)', margin: '0.2rem 0 0.2rem 0' }}>Inspire Next Global Inc.</p>
                   <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)', margin: '0 0 1rem 0', fontStyle: 'italic', opacity: 0.8 }}>
-                    MAIN OFFICE: 6F Alliance Global Tower, 11th Avenue, corner 36th St, BGC, Taguig, Metro Manila, Philippines.
+                    MAIN OFFICE: BGC, Taguig, Metro Manila, Philippines.
                   </p>
                   <p style={{ color: 'var(--text-main)', fontSize: '1.05rem', lineHeight: 1.5 }}>
                     Successfully performed Quality Assurance for Loopwork Version 2.0, including the landing page, login page, and portal page. Leveraged over 17 testing tools while adhering to ISO Standard Software Testing protocols to ensure high-quality software delivery.
@@ -100,7 +100,7 @@ const Experience: React.FC = () => {
                   <h4 style={{ fontSize: '1.4rem', fontWeight: 600 }}>Junior Sales Associate (Part-time)</h4>
                   <p style={{ fontSize: '1.1rem', color: 'var(--text-muted)', margin: '0.2rem 0 0.2rem 0' }}>Inspire Next Global Inc.</p>
                   <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)', margin: '0 0 1rem 0', fontStyle: 'italic', opacity: 0.8 }}>
-                    MAIN OFFICE: 6F Alliance Global Tower, 11th Avenue, corner 36th St, BGC, Taguig, Metro Manila, Philippines.
+                    MAIN OFFICE: BGC, Taguig, Metro Manila, Philippines.
                   </p>
                   <p style={{ color: 'var(--text-main)', fontSize: '1.05rem', lineHeight: 1.5 }}>
                     Generated 500+ high-quality sales leads through targeted automated email campaigns. Improved email open rates by 15% through A/B testing and personalized content, while collaborating with the marketing team to align outreach strategies with product launches.
