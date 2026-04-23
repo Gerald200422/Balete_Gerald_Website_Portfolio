@@ -26,8 +26,8 @@ const Experience: React.FC = () => {
                   background: 'white', 
                   padding: '2rem', 
                   borderRadius: '24px', 
-                  boxShadow: '0 4px 20px rgba(0,0,0,0.03)',
-                  border: '1px solid var(--border-soft)'
+                  boxShadow: '0 12px 40px rgba(0,0,0,0.08), 0 4px 12px rgba(0,0,0,0.03)',
+                  border: '1px solid rgba(0,0,0,0.08)'
                 }}
               >
                 <motion.div whileHover={{ rotate: 15 }} style={{ color: 'var(--primary)', display: 'flex', alignItems: 'flex-start' }}>
@@ -58,8 +58,8 @@ const Experience: React.FC = () => {
                   background: 'white', 
                   padding: '2rem', 
                   borderRadius: '24px', 
-                  boxShadow: '0 4px 20px rgba(0,0,0,0.03)',
-                  border: '1px solid var(--border-soft)'
+                  boxShadow: '0 12px 40px rgba(0,0,0,0.08), 0 4px 12px rgba(0,0,0,0.03)',
+                  border: '1px solid rgba(0,0,0,0.08)'
                 }}
               >
                 <motion.div whileHover={{ rotate: 15 }} style={{ color: 'var(--primary)', display: 'flex', alignItems: 'flex-start' }}>
@@ -89,8 +89,8 @@ const Experience: React.FC = () => {
                   background: 'white', 
                   padding: '2rem', 
                   borderRadius: '24px', 
-                  boxShadow: '0 4px 20px rgba(0,0,0,0.03)',
-                  border: '1px solid var(--border-soft)'
+                  boxShadow: '0 12px 40px rgba(0,0,0,0.08), 0 4px 12px rgba(0,0,0,0.03)',
+                  border: '1px solid rgba(0,0,0,0.08)'
                 }}
               >
                 <motion.div whileHover={{ rotate: 15 }} style={{ color: 'var(--primary)', display: 'flex', alignItems: 'flex-start' }}>
@@ -103,7 +103,7 @@ const Experience: React.FC = () => {
                     MAIN OFFICE: BGC, Taguig, Metro Manila, Philippines.
                   </p>
                   <p style={{ color: 'var(--text-main)', fontSize: '1.05rem', lineHeight: 1.5 }}>
-                    Generated 500+ high-quality sales leads through targeted automated email campaigns. Improved email open rates by 15% through A/B testing and personalized content, while collaborating with the marketing team to align outreach strategies with product launches.
+                    Contributed to generating over 230+ qualified sales leads by engaging with various companies, collaborating with Itech’s Sales Team, and participating in meetings and training sessions to strengthen sales strategies and client engagement.
                   </p>
                 </div>
               </motion.div>
@@ -139,8 +139,10 @@ const Experience: React.FC = () => {
                     alignItems: 'center', 
                     padding: '1.2rem', 
                     borderRadius: '20px', 
-                    border: '1px solid transparent',
-                    transition: 'border-color 0.3s',
+                    background: 'white',
+                    boxShadow: '0 8px 30px rgba(0,0,0,0.06)',
+                    border: '1px solid rgba(0,0,0,0.05)',
+                    transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
                     cursor: 'pointer'
                   }}
                 >

@@ -45,7 +45,7 @@ const Skills: React.FC = () => {
                 whileHover={{ 
                   y: -10, 
                   scale: 1.02, 
-                  boxShadow: '0 35px 60px -15px rgba(0,0,150,0.05), inset 0 1px 0 rgba(255,255,255,0.8)' 
+                  boxShadow: '0 35px 60px -15px rgba(0,0,0,0.15), inset 0 1px 0 rgba(255,255,255,0.8)' 
                 }}
                 transition={{ duration: 0.4, ease: "easeOut" }}
                 viewport={{ once: true, margin: "-50px" }}
@@ -92,7 +92,7 @@ const Skills: React.FC = () => {
                 whileInView="visible"
                 whileHover={{ 
                   y: -10, 
-                  boxShadow: '0 25px 50px -12px rgba(0,0,0,0.1), inset 0 1px 0 rgba(255,255,255,1)' 
+                  boxShadow: '0 25px 50px -12px rgba(0,0,0,0.15), inset 0 1px 0 rgba(255,255,255,1)' 
                 }}
                 transition={{ duration: 0.3 }}
                 viewport={{ once: true }}
