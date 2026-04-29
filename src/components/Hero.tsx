@@ -43,14 +43,22 @@ const Hero: React.FC = () => {
   }, [displayedText, isDeleting, roleIndex]);
 
   return (
-    <section id="hero" style={{ height: '100vh', width: '100%', position: 'relative', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-      
-      {/* Background Video */}
-      <video
-        autoPlay
-        loop
-        muted
-        playsInline
+    <section 
+      id="hero" 
+      style={{ 
+        height: '100vh', 
+        width: '100%', 
+        position: 'relative', 
+        overflow: 'hidden', 
+        display: 'flex', 
+        alignItems: 'center', 
+        justifyContent: 'center' 
+      }}
+    >
+      {/* Background Image */}
+      <motion.img
+        src="/1000020201.jpg"
+        alt="Hero Background"
         style={{ 
           position: 'absolute', 
           top: 0, 
@@ -60,10 +68,16 @@ const Hero: React.FC = () => {
           objectFit: 'cover', 
           zIndex: 0 
         }}
-      >
-        <source src="https://assets.mixkit.co/videos/preview/mixkit-abstract-technology-elements-loop-31627-large.mp4" type="video/mp4" />
-      </video>
-      
+        animate={{
+          scale: [1, 1.1, 1],
+        }}
+        transition={{
+          duration: 20, // Slow, smooth zoom
+          repeat: Infinity,
+          ease: "easeInOut"
+        }}
+      />
+
       {/* Dark & Blurred Overlay */}
       <div 
         style={{ 
@@ -72,14 +86,23 @@ const Hero: React.FC = () => {
           left: 0, 
           width: '100%', 
           height: '100%', 
-          background: 'rgba(0, 0, 0, 0.6)', // darkens the video
-          backdropFilter: 'blur(8px)',     // blurs the video softly
+          background: 'rgba(0, 0, 0, 0.6)', // darkens the image
+          backdropFilter: 'blur(2px)',       // blurs the image softly
           zIndex: 1 
         }} 
       />
 
       {/* Centered Content */}
-      <div className="container" style={{ textAlign: 'center', position: 'relative', zIndex: 2, width: '100%', padding: '0 2rem' }}>
+      <div 
+        className="container" 
+        style={{ 
+          textAlign: 'center', 
+          position: 'relative', 
+          zIndex: 2, 
+          width: '100%', 
+          padding: '0 2rem' 
+        }}
+      >
         <motion.div initial="hidden" animate="visible" variants={staggerContainer}>
           
           <div style={{ position: 'relative', display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '120px' }}>
@@ -119,7 +142,7 @@ const Hero: React.FC = () => {
             style={{ marginTop: '2.5rem' }}
           >
             <a 
-              href="/resume.pdf" 
+              href="/Balete_Resumé.pdf" 
               download
               className="btn-primary"
               style={{ 
