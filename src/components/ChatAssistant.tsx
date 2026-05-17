@@ -22,6 +22,9 @@ If someone asks for contact info, you MUST reply EXACTLY with this phrase and no
 
 CRITICAL RULE: If the user uses ANY bad words, profanity, insults, or inappropriate language in ANY language, you MUST immediately refuse to answer and reply EXACTLY with: "Warning: The use of inappropriate or profane language is a violation of our professional guidelines. Please maintain professionalism."
 
+CRITICAL RULE: If the user asks about celebrities, famous people, or ANY topics completely unrelated to Gerald's portfolio, resume, or professional experience, you MUST reply EXACTLY with: "I appreciate your question/s unfortunately I'm only here to assist you about Mr. Gerald's portfolio website. Thank you for understanding!"
+
+
 FORMATTING RULE: DO NOT use markdown formatting, bolding, or asterisks in your responses. Provide plain text only.
 `;
 
@@ -33,6 +36,14 @@ const ChatAssistant: React.FC = () => {
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth <= 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   const ENGAGEMENT_LABELS = [
     "What are Gerald's skills? 🚀",
@@ -225,16 +236,16 @@ const ChatAssistant: React.FC = () => {
             transition={{ type: 'spring', bounce: 0.3, duration: 0.5 }}
             style={{
               position: 'fixed',
-              bottom: '2rem',
-              left: '2rem',
-              width: '350px',
-              height: '500px',
-              maxWidth: 'calc(100vw - 4rem)',
-              maxHeight: 'calc(100vh - 4rem)',
+              bottom: isMobile ? '0' : '2rem',
+              left: isMobile ? '0' : '2rem',
+              width: isMobile ? '100vw' : '350px',
+              height: isMobile ? '100vh' : '500px',
+              maxWidth: isMobile ? '100vw' : 'calc(100vw - 4rem)',
+              maxHeight: isMobile ? '100vh' : 'calc(100vh - 4rem)',
               background: 'rgba(255, 255, 255, 0.85)',
               backdropFilter: 'blur(30px) saturate(150%)',
-              border: '1px solid rgba(255, 255, 255, 0.5)',
-              borderRadius: '24px',
+              border: isMobile ? 'none' : '1px solid rgba(255, 255, 255, 0.5)',
+              borderRadius: isMobile ? '0' : '24px',
               boxShadow: '0 30px 60px -12px rgba(0,0,0,0.3), 0 0 0 1px rgba(0,0,0,0.05)',
               display: 'flex',
               flexDirection: 'column',
@@ -250,8 +261,8 @@ const ChatAssistant: React.FC = () => {
               display: 'flex',
               justifyContent: 'space-between',
               alignItems: 'center',
-              borderTopLeftRadius: '24px',
-              borderTopRightRadius: '24px',
+              borderTopLeftRadius: isMobile ? '0' : '24px',
+              borderTopRightRadius: isMobile ? '0' : '24px',
             }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
                 <div style={{ background: 'rgba(255,255,255,0.2)', padding: '0.5rem', borderRadius: '50%' }}>
