@@ -66,6 +66,11 @@ const ChatAssistant: React.FC = () => {
     const textToSend = forcedInput || input;
     if (!textToSend.trim() || isLoading) return;
 
+    // Stop any ongoing read aloud when sending a new message
+    if ('speechSynthesis' in window) {
+      window.speechSynthesis.cancel();
+    }
+
     const userMessage = textToSend.trim();
     setMessages(prev => [...prev, { role: 'user', content: userMessage }]);
     if (!forcedInput) setInput('');
@@ -122,6 +127,13 @@ const ChatAssistant: React.FC = () => {
       }
 
       setMessages(prev => [...prev, { role: 'assistant', content: botReply }]);
+
+      // Read aloud the AI response
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel(); // Stop any previous speech
+        const utterance = new SpeechSynthesisUtterance(botReply);
+        window.speechSynthesis.speak(utterance);
+      }
     } catch (error: any) {
       setMessages(prev => [...prev, { role: 'assistant', content: `Error: ${error?.message || 'Network error. Please try again later.'}` }]);
     } finally {
@@ -250,7 +262,12 @@ const ChatAssistant: React.FC = () => {
                 </div>
               </div>
               <button 
-                onClick={() => setIsOpen(false)}
+                onClick={() => {
+                  setIsOpen(false);
+                  if ('speechSynthesis' in window) {
+                    window.speechSynthesis.cancel();
+                  }
+                }}
                 style={{
                   background: 'none',
                   border: 'none',
