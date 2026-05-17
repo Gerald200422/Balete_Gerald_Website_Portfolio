@@ -150,7 +150,6 @@ const ChatAssistant: React.FC = () => {
 
       if (!response.ok) {
         const errData = await response.json();
-        console.error("Gemini API Error:", errData);
         throw new Error(errData.error?.message || 'API Error');
       }
 

@@ -6,28 +6,81 @@ import { zoomIn } from '../App';
 
 const Contact: React.FC = () => {
   const [formStatus, setFormStatus] = useState<'idle' | 'sending' | 'sent'>('idle');
+  const [formError, setFormError] = useState<string | null>(null);
   const formRef = useRef<HTMLFormElement>(null);
 
   const handleContactSubmit = useCallback((e: React.FormEvent) => {
     e.preventDefault();
     if (!formRef.current) return;
 
+    setFormError(null);
+
+    const formData = new FormData(formRef.current);
+    const name = (formData.get('user_name') as string || '').trim();
+    const email = (formData.get('user_email') as string || '').trim();
+    const message = (formData.get('message') as string || '').trim();
+
+    // 1. Name Validation
+    if (name.length < 2) {
+      setFormError('Please enter a valid name (at least 2 characters).');
+      return;
+    }
+    const nameRegex = /^[a-zA-Z\s\-'.]+$/;
+    if (!nameRegex.test(name)) {
+      setFormError('Name can only contain letters, spaces, hyphens, and apostrophes.');
+      return;
+    }
+
+    // 2. Email Validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      setFormError('Please enter a valid email address.');
+      return;
+    }
+
+    // 3. Message Validation
+    if (message.length < 10) {
+      setFormError('Please enter a more detailed message (at least 10 characters).');
+      return;
+    }
+    if (message.length > 3000) {
+      setFormError('Message is too long. Please keep it under 3000 characters.');
+      return;
+    }
+    
+    // 4. Basic XSS / Security Check (Reject raw HTML tags)
+    if (/<[a-z][\s\S]*>/i.test(message) || /<[a-z][\s\S]*>/i.test(name)) {
+      setFormError('For security reasons, HTML tags are not allowed.');
+      return;
+    }
+
     setFormStatus('sending');
     
-    // Credentials from original App.tsx
-    emailjs.sendForm(
-      import.meta.env.VITE_EMAILJS_SERVICE_ID, 
-      import.meta.env.VITE_EMAILJS_TEMPLATE_ID, 
+    const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+
+    // Send to Site Owner
+    const sendToOwner = emailjs.sendForm(
+      serviceId, 
+      'template_rb35ghh', 
       formRef.current,
-      {
-        publicKey: import.meta.env.VITE_EMAILJS_PUBLIC_KEY,
-      }
-    )
+      { publicKey }
+    );
+
+    // Send Auto-Reply to Visitor
+    const sendAutoReply = emailjs.sendForm(
+      serviceId, 
+      'template_5rclruy', 
+      formRef.current,
+      { publicKey }
+    );
+
+    Promise.all([sendToOwner, sendAutoReply])
     .then(() => {
       setFormStatus('sent');
       formRef.current?.reset();
-    }, (error) => {
-      console.log('FAILED...', error.text);
+    })
+    .catch(() => {
       setFormStatus('idle');
       alert('Failed to send the message. Please try again.');
     });
@@ -112,7 +165,9 @@ const Contact: React.FC = () => {
                   <Github size={32} />
                 </motion.a>
                 <motion.a 
-                  href="#" 
+                  href="https://www.linkedin.com/in/geraldbalete/" 
+                  target="_blank"
+                  rel="noopener noreferrer"
                   whileHover={{ y: -8, scale: 1.2, color: 'var(--primary)', filter: 'drop-shadow(0px 10px 10px rgba(0, 102, 204, 0.4))' }}
                   transition={{ type: "spring", stiffness: 400, damping: 17 }}
                   style={{ color: 'var(--text-main)', display: 'inline-block' }}
@@ -135,10 +190,21 @@ const Contact: React.FC = () => {
               ) : (
                 <form ref={formRef} onSubmit={handleContactSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                   <div className="contact-form-grid">
-                    <input type="text" name="user_name" placeholder="Name" required className="apple-input" />
-                    <input type="email" name="user_email" placeholder="Email" required className="apple-input" />
+                    <input type="text" name="user_name" placeholder="Name" required minLength={2} maxLength={100} className="apple-input" />
+                    <input type="email" name="user_email" placeholder="Email" required maxLength={150} className="apple-input" />
                   </div>
-                  <textarea placeholder="Message" name="message" required rows={5} className="apple-input" style={{ resize: 'none' }}></textarea>
+                  <textarea placeholder="Message" name="message" required minLength={10} maxLength={3000} rows={5} className="apple-input" style={{ resize: 'none' }}></textarea>
+                  
+                  {formError && (
+                    <motion.div 
+                      initial={{ opacity: 0, y: -5 }} 
+                      animate={{ opacity: 1, y: 0 }} 
+                      style={{ color: '#ff3b30', fontSize: '0.9rem', padding: '0.2rem 0.5rem' }}
+                    >
+                      {formError}
+                    </motion.div>
+                  )}
+
                   <button
                     type="submit"
                     className="btn-primary"
