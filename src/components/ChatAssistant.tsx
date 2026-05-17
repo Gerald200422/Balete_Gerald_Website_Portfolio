@@ -54,7 +54,7 @@ FORMATTING RULE: DO NOT use markdown formatting, bolding, or asterisks in your r
 const ChatAssistant: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<{ role: 'user' | 'assistant', content: string }[]>([
-    { role: 'assistant', content: "Good day! I'm Gerald's AI assistant. Ask me anything about his experience, skills, or resume in your preferred language!" }
+    { role: 'assistant', content: "Good day! I'm Gerald's AI assistant. Ask me anything about his experience, skills, or résumé in your preferred language!" }
   ]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -77,7 +77,7 @@ const ChatAssistant: React.FC = () => {
     setIsOpen(true);
     if ('speechSynthesis' in window) {
       window.speechSynthesis.cancel();
-      const introText = "Good day! I'm Gerald's AI assistant. Ask me anything about his experience, skills, or resume in your preferred language!";
+      const introText = "Good day! I'm Gerald's AI assistant. Ask me anything about his experience, skills, or REH-zoo-may in your preferred language!";
       const utterance = new SpeechSynthesisUtterance(introText);
       utterance.lang = 'en-US';
       window.speechSynthesis.speak(utterance);
@@ -91,7 +91,7 @@ const ChatAssistant: React.FC = () => {
     }
     setTimeout(() => {
       setMessages([
-        { role: 'assistant', content: "Good day! I'm Gerald's AI assistant. Ask me anything about his experience, skills, or resume in your preferred language!" }
+        { role: 'assistant', content: "Good day! I'm Gerald's AI assistant. Ask me anything about his experience, skills, or résumé in your preferred language!" }
       ]);
       setInput('');
     }, 500);
@@ -197,7 +197,7 @@ const ChatAssistant: React.FC = () => {
           contents: [
             // Filter out the initial greeting to avoid role sequence errors (user -> model)
             ...messages
-              .filter(m => m.content !== "Good day! I'm Gerald's AI assistant. Ask me anything about his experience, skills, or resume in your preferred language!")
+              .filter(m => m.content !== "Good day! I'm Gerald's AI assistant. Ask me anything about his experience, skills, or résumé in your preferred language!")
               .slice(-6) // Limit history to last 3 conversational turns to prevent token limits
               .map(m => ({
                 role: m.role === 'assistant' ? 'model' : 'user',
