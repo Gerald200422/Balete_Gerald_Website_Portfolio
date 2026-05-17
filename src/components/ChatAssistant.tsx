@@ -120,12 +120,22 @@ const ChatAssistant: React.FC = () => {
             // Filter out the initial greeting to avoid role sequence errors (user -> model)
             ...messages
               .filter(m => m.content !== "Hi! I'm Gerald's AI assistant. Ask me anything about his experience, skills, or resume!")
+              .slice(-6) // Limit history to last 3 conversational turns to prevent token limits
               .map(m => ({
                 role: m.role === 'assistant' ? 'model' : 'user',
                 parts: [{ text: m.content === "ERROR_FALLBACK" ? "I encountered a technical error." : m.content === "CONTACT_FALLBACK" ? "You can reach him via the Contact section on this website." : m.content }]
               })),
             { role: 'user', parts: [{ text: userMessage }] }
-          ]
+          ],
+          safetySettings: [
+            { category: "HARM_CATEGORY_HARASSMENT", threshold: "BLOCK_ONLY_HIGH" },
+            { category: "HARM_CATEGORY_HATE_SPEECH", threshold: "BLOCK_ONLY_HIGH" },
+            { category: "HARM_CATEGORY_SEXUALLY_EXPLICIT", threshold: "BLOCK_ONLY_HIGH" },
+            { category: "HARM_CATEGORY_DANGEROUS_CONTENT", threshold: "BLOCK_ONLY_HIGH" },
+          ],
+          generationConfig: {
+            maxOutputTokens: 300,
+          }
         })
       });
 
