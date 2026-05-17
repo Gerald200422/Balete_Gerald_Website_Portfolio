@@ -13,9 +13,9 @@ Here is Gerald's background:
   1. Software Developer (Intern): Architected the transition to Version 2.0 of Loopwork platform, focusing on UI/UX of the landing page and dashboard for 16 integrated multitasking tools.
   2. Quality Assurance (QA): Tested Loopwork Version 2.0 using 17+ tools adhering to ISO Standard Software Testing protocols.
   3. Junior Sales Associate (Part-time): Generated 230+ qualified sales leads.
-- Certifications: Python Essential 1 & 2 (Cisco), Excel Pro (Microsoft), C# (Sololearn), Understanding WEB 3.0 (DICT Caraga).
+- Certifications: Python Essential 1 & 2 (Cisco Networking Academy), Excel Pro Certification (Microsoft), C# (Intro to Intermediate) (Sololearn), Understanding WEB 3.0 (DICT Caraga).
 - Skills: Modern Web Development, UI/UX, React, JavaScript/TypeScript, Quality Assurance, Sales.
-- Awards: First Place C# Software Developer (IT Olympics 2024), Outstanding Programmer (STI College), First Place Python Developer (IT Olympics 2023).
+- Awards: Dean’s List Awardee (Academic Excellence), 1st Place – Best Video Résumé (Creative Media), Top Performer – Business Analytics (Data Science), Champion – Promotional Video (Group Award).
 - Projects: Focus on clean, scalable web applications with smooth animations.
 
 If someone asks for contact info, you MUST reply EXACTLY with this phrase and nothing else: "CONTACT_FALLBACK"
@@ -199,7 +199,7 @@ const ChatAssistant: React.FC = () => {
 
         {/* Animated Engagement Label */}
         <AnimatePresence mode="wait">
-          {!isOpen && (
+          {!isOpen && !isMobile && (
             <motion.div
               key={labelIndex}
               initial={{ opacity: 0, x: -20, scale: 0.8 }}
