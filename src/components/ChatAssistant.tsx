@@ -18,7 +18,7 @@ Here is Gerald's background:
 - Awards: First Place C# Software Developer (IT Olympics 2024), Outstanding Programmer (STI College), First Place Python Developer (IT Olympics 2023).
 - Projects: Focus on clean, scalable web applications with smooth animations.
 
-If someone asks for contact info, say they can reach him via the Contact section on this website.
+If someone asks for contact info, you MUST reply EXACTLY with this phrase and nothing else: "CONTACT_FALLBACK"
 
 CRITICAL RULE: If the user uses ANY bad words, profanity, insults, or inappropriate language in ANY language, you MUST immediately refuse to answer and reply EXACTLY with: "Warning: The use of inappropriate or profane language is a violation of our professional guidelines. Please maintain professionalism."
 
@@ -104,7 +104,7 @@ const ChatAssistant: React.FC = () => {
               .filter(m => m.content !== "Hi! I'm Gerald's AI assistant. Ask me anything about his experience, skills, or resume!")
               .map(m => ({
                 role: m.role === 'assistant' ? 'model' : 'user',
-                parts: [{ text: m.content === "ERROR_FALLBACK" ? "I encountered a technical error." : m.content }]
+                parts: [{ text: m.content === "ERROR_FALLBACK" ? "I encountered a technical error." : m.content === "CONTACT_FALLBACK" ? "You can reach him via the Contact section on this website." : m.content }]
               })),
             { role: 'user', parts: [{ text: userMessage }] }
           ]
@@ -131,7 +131,8 @@ const ChatAssistant: React.FC = () => {
       // Read aloud the AI response (skip if it's an error)
       if ('speechSynthesis' in window && botReply !== "ERROR_FALLBACK") {
         window.speechSynthesis.cancel(); // Stop any previous speech
-        const utterance = new SpeechSynthesisUtterance(botReply);
+        const textToSpeak = botReply === "CONTACT_FALLBACK" ? "You can reach him via the Contact section on this website." : botReply;
+        const utterance = new SpeechSynthesisUtterance(textToSpeak);
         window.speechSynthesis.speak(utterance);
       }
     } catch (error: any) {
@@ -328,6 +329,10 @@ const ChatAssistant: React.FC = () => {
                     {msg.content === "ERROR_FALLBACK" ? (
                       <span>
                         We are currently facing issues right now. We will get back to you soon. Thank you for your patience, or message directly to <a href="#contact" style={{ color: '#0066cc', textDecoration: 'underline', fontWeight: 500 }}>Gerald</a> under contact.
+                      </span>
+                    ) : msg.content === "CONTACT_FALLBACK" ? (
+                      <span>
+                        You can reach him via the <a href="#contact" onClick={() => setIsOpen(false)} style={{ color: '#0066cc', textDecoration: 'underline', fontWeight: 500 }}>Contact section</a> on this website.
                       </span>
                     ) : (
                       msg.content
