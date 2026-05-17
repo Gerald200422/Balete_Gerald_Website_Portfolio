@@ -92,7 +92,7 @@ git push origin main
 ```
 
 ### Pushing to Vercel Deploy Remote
-To push to the deployment remote (chalisterrald) which automatically triggers a live production rebuild in Vercel:
+To push to the deployment remote which automatically triggers a live production rebuild in Vercel:
 ```bash
 git push second main
 ```
