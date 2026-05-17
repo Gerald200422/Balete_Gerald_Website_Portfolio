@@ -53,12 +53,12 @@ const ChatAssistant: React.FC = () => {
   }, []);
 
   const ENGAGEMENT_LABELS = [
-    "What are Gerald's skills? 🚀",
-    "What is Gerald's experience? 💼",
-    "What are Gerald's top projects? 💻",
-    "What is Gerald's educational training? 🎓",
-    "What awards has Gerald won? 🏆",
-    "What is Gerald's contact info? 📬"
+    "What are Gerald's skills? ",
+    "What is Gerald's experience? ",
+    "What are Gerald's top projects? ",
+    "What is Gerald's educational training? ",
+    "What awards has Gerald won? ",
+    "What is Gerald's contact info? "
   ];
   const [labelIndex, setLabelIndex] = useState(0);
 
