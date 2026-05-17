@@ -82,7 +82,7 @@ const ChatAssistant: React.FC = () => {
       setTimeout(() => {
         setMessages(prev => [...prev, { 
           role: 'assistant', 
-          content: "Oops! It looks like my AI brain isn't connected. Please add your free Gemini API key to the .env file as VITE_GEMINI_API_KEY to activate me!" 
+          content: "ERROR_FALLBACK" 
         }]);
         setIsLoading(false);
       }, 1000);
@@ -104,7 +104,7 @@ const ChatAssistant: React.FC = () => {
               .filter(m => m.content !== "Hi! I'm Gerald's AI assistant. Ask me anything about his experience, skills, or resume!")
               .map(m => ({
                 role: m.role === 'assistant' ? 'model' : 'user',
-                parts: [{ text: m.content }]
+                parts: [{ text: m.content === "ERROR_FALLBACK" ? "I encountered a technical error." : m.content }]
               })),
             { role: 'user', parts: [{ text: userMessage }] }
           ]
@@ -128,14 +128,14 @@ const ChatAssistant: React.FC = () => {
 
       setMessages(prev => [...prev, { role: 'assistant', content: botReply }]);
 
-      // Read aloud the AI response
-      if ('speechSynthesis' in window) {
+      // Read aloud the AI response (skip if it's an error)
+      if ('speechSynthesis' in window && botReply !== "ERROR_FALLBACK") {
         window.speechSynthesis.cancel(); // Stop any previous speech
         const utterance = new SpeechSynthesisUtterance(botReply);
         window.speechSynthesis.speak(utterance);
       }
     } catch (error: any) {
-      setMessages(prev => [...prev, { role: 'assistant', content: `Error: ${error?.message || 'Network error. Please try again later.'}` }]);
+      setMessages(prev => [...prev, { role: 'assistant', content: "ERROR_FALLBACK" }]);
     } finally {
       setIsLoading(false);
     }
@@ -325,7 +325,13 @@ const ChatAssistant: React.FC = () => {
                     lineHeight: 1.4,
                     boxShadow: msg.role === 'user' ? '0 4px 15px rgba(0, 102, 204, 0.2)' : 'none'
                   }}>
-                    {msg.content}
+                    {msg.content === "ERROR_FALLBACK" ? (
+                      <span>
+                        We are currently facing issues right now. We will get back to you soon. Thank you for your patience, or message directly to <a href="#contact" style={{ color: '#0066cc', textDecoration: 'underline', fontWeight: 500 }}>Gerald</a> under contact.
+                      </span>
+                    ) : (
+                      msg.content
+                    )}
                   </div>
                 </div>
               ))}
