@@ -165,8 +165,8 @@ const ChatAssistant: React.FC = () => {
       {/* Floating Action Button Container */}
       <div style={{
         position: 'fixed',
-        bottom: '2rem',
-        left: '2rem',
+        bottom: 'clamp(1.5rem, 5vw, 2.5rem)',
+        left: 'clamp(1.5rem, 5vw, 2.5rem)',
         zIndex: 99,
         display: 'flex',
         alignItems: 'center',
@@ -180,8 +180,8 @@ const ChatAssistant: React.FC = () => {
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
           style={{
-            width: '60px',
-            height: '60px',
+            width: 'clamp(3rem, 8vw, 3.8rem)',
+            height: 'clamp(3rem, 8vw, 3.8rem)',
             borderRadius: '50%',
             background: 'linear-gradient(135deg, var(--primary), #004d99)',
             color: 'white',
@@ -199,7 +199,7 @@ const ChatAssistant: React.FC = () => {
             transition={{ repeat: Infinity, duration: 2, repeatDelay: 3 }}
             style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
           >
-            <MessageCircle size={28} />
+            <MessageCircle size={24} />
           </motion.div>
         </motion.button>
 
