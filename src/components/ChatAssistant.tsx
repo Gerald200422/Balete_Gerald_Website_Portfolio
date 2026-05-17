@@ -348,7 +348,7 @@ const ChatAssistant: React.FC = () => {
                   }}>
                     {msg.content === "ERROR_FALLBACK" ? (
                       <span>
-                        We are currently facing issues right now. We will get back to you soon. Thank you for your patience, or message directly to <a href="#contact" style={{ color: '#0066cc', textDecoration: 'underline', fontWeight: 500 }}>Gerald</a> under contact.
+                        We are currently facing issues right now. We will get back to you soon. Thank you for your patience, or message directly to <a href="#contact" onClick={() => setIsOpen(false)} style={{ color: '#0066cc', textDecoration: 'underline', fontWeight: 500 }}>Gerald</a> under contact.
                       </span>
                     ) : msg.content === "CONTACT_FALLBACK" ? (
                       <span>
