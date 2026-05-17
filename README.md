@@ -8,8 +8,6 @@ It also integrates a secure, intelligent AI Chat Assistant that acts as a virtua
 
 Below are visual previews of platforms, dashboards, and projects showcased within this portfolio:
 
-![Loopwork Version 2.0 Dashboard Preview](public/project_loopwork_v2.png)
-
 ![EduQualiTech System Platform Preview](public/project_eduqualitech_system.png)
 
 ![Email Sender Automation Tool Preview](public/project_email_sender_autonomation.png)
@@ -102,5 +100,4 @@ git push second main
 ## Developer Information
 
 - Developer: Gerald Balete
-- Current Internship: Inspire Next Global Inc. (Software Developer, Quality Assurance, Junior Sales Associate)
 - Focus Areas: Full-Stack Web Development, UI/UX Engineering, Quality Assurance & Software Automation
