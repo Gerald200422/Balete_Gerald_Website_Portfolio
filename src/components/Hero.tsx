@@ -142,7 +142,7 @@ const Hero: React.FC = () => {
             style={{ marginTop: '2.5rem' }}
           >
             <a 
-              href="/Balete_Resumé.pdf" 
+              href="/Balete_GeraldResume.pdf" 
               download
               className="btn-primary"
               style={{ 
