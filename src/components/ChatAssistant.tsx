@@ -53,12 +53,21 @@ const ChatAssistant: React.FC = () => {
   }, []);
 
   const ENGAGEMENT_LABELS = [
-    "What are Gerald's skills? ",
-    "What is Gerald's experience? ",
-    "What are Gerald's top projects? ",
-    "What is Gerald's educational training? ",
-    "What awards has Gerald won? ",
-    "What is Gerald's contact info? "
+    "What are Gerald's skills?",
+    "What is Gerald's experience?",
+    "What are Gerald's top projects?",
+    "What is Gerald's educational training?",
+    "What awards has Gerald won?",
+    "What is Gerald's contact info?"
+  ];
+
+  const MOBILE_ENGAGEMENT_LABELS = [
+    "Hey, there!",
+    "Skills?",
+    "Experience?",
+    "Projects?",
+    "Awards?",
+    "Contact?"
   ];
   const [labelIndex, setLabelIndex] = useState(0);
 
@@ -70,7 +79,7 @@ const ChatAssistant: React.FC = () => {
   useEffect(() => {
     if (isOpen) return;
     const interval = setInterval(() => {
-      setLabelIndex((prev) => (prev + 1) % ENGAGEMENT_LABELS.length);
+      setLabelIndex((prev) => prev + 1);
     }, 5000); // Change label every 5 seconds
     return () => clearInterval(interval);
   }, [isOpen]);
@@ -215,7 +224,7 @@ const ChatAssistant: React.FC = () => {
 
         {/* Animated Engagement Label */}
         <AnimatePresence mode="wait">
-          {!isOpen && !isMobile && (
+          {!isOpen && (
             <motion.div
               key={labelIndex}
               initial={{ opacity: 0, x: -20, scale: 0.8 }}
@@ -237,7 +246,9 @@ const ChatAssistant: React.FC = () => {
               }}
               onClick={() => setIsOpen(true)}
             >
-              {ENGAGEMENT_LABELS[labelIndex]}
+              {isMobile 
+                ? MOBILE_ENGAGEMENT_LABELS[labelIndex % MOBILE_ENGAGEMENT_LABELS.length] 
+                : ENGAGEMENT_LABELS[labelIndex % ENGAGEMENT_LABELS.length]}
             </motion.div>
           )}
         </AnimatePresence>
