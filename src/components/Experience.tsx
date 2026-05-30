@@ -34,77 +34,18 @@ const Experience: React.FC = () => {
                   <Briefcase size={32} />
                 </motion.div>
                 <div>
-                  <h4 style={{ fontSize: '1.4rem', fontWeight: 600 }}>Software Developer (Intern)</h4>
-                  <p style={{ fontSize: '1.1rem', color: 'var(--text-muted)', margin: '0.2rem 0 0.2rem 0' }}>Inspire Next Global Inc. | Jan 26 to Present</p>
+                  <h4 style={{ fontSize: '1.4rem', fontWeight: 600 }}>Software Development Intern | QA & Outbound Sales Support</h4>
+                  <p style={{ fontSize: '1.1rem', color: 'var(--text-muted)', margin: '0.2rem 0 0.2rem 0' }}>Inspire Holdings, Inc. | Jan 2026 – May 2026</p>
                   <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)', margin: '0 0 1rem 0', fontStyle: 'italic', opacity: 0.8 }}>
-                    MAIN OFFICE: BGC, Taguig, Metro Manila, Philippines.
+                    Alliance Global Tower, BGC, Taguig City, Metro Manila, Philippines
                   </p>
-                  <p style={{ color: 'var(--text-main)', fontSize: '1.05rem', lineHeight: 1.5 }}>
-                    Contributed to the UI/UX enhancement of the Loopwork platform, specifically architecting the transition to Version 2.0. Focused on refining the landing page and core dashboard to deliver a more engaging, intuitive, and visually polished experience for users leveraging its 16 integrated multitasking tools.
-                  </p>
-                </div>
-              </motion.div>
-
-              <motion.div 
-                variants={slideInRight} 
-                initial="hidden" 
-                whileInView="visible" 
-                viewport={{ once: true }} 
-                whileHover={{ x: 10, scale: 1.01 }}
-                transition={{ duration: 0.3, ease: 'easeOut' }}
-                style={{ 
-                  display: 'flex', 
-                  gap: '1.5rem', 
-                  background: 'white', 
-                  padding: '2rem', 
-                  borderRadius: '24px', 
-                  boxShadow: '0 12px 40px rgba(0,0,0,0.08), 0 4px 12px rgba(0,0,0,0.03)',
-                  border: '1px solid rgba(0,0,0,0.08)'
-                }}
-              >
-                <motion.div whileHover={{ rotate: 15 }} style={{ color: 'var(--primary)', display: 'flex', alignItems: 'flex-start' }}>
-                  <ShieldCheck size={32} />
-                </motion.div>
-                <div>
-                  <h4 style={{ fontSize: '1.4rem', fontWeight: 600 }}>Quality Assurance (QA)</h4>
-                  <p style={{ fontSize: '1.1rem', color: 'var(--text-muted)', margin: '0.2rem 0 0.2rem 0' }}>Inspire Next Global Inc.</p>
-                  <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)', margin: '0 0 1rem 0', fontStyle: 'italic', opacity: 0.8 }}>
-                    MAIN OFFICE: BGC, Taguig, Metro Manila, Philippines.
-                  </p>
-                  <p style={{ color: 'var(--text-main)', fontSize: '1.05rem', lineHeight: 1.5 }}>
-                    Successfully performed Quality Assurance for Loopwork Version 2.0, including the landing page, login page, and portal page. Leveraged over 17 testing tools while adhering to ISO Standard Software Testing protocols to ensure high-quality software delivery.
-                  </p>
-                </div>
-              </motion.div>
-              <motion.div 
-                variants={slideInLeft} 
-                initial="hidden" 
-                whileInView="visible" 
-                viewport={{ once: true }} 
-                whileHover={{ x: 10, scale: 1.01 }}
-                transition={{ duration: 0.3, ease: 'easeOut' }}
-                style={{ 
-                  display: 'flex', 
-                  gap: '1.5rem', 
-                  background: 'white', 
-                  padding: '2rem', 
-                  borderRadius: '24px', 
-                  boxShadow: '0 12px 40px rgba(0,0,0,0.08), 0 4px 12px rgba(0,0,0,0.03)',
-                  border: '1px solid rgba(0,0,0,0.08)'
-                }}
-              >
-                <motion.div whileHover={{ rotate: 15 }} style={{ color: 'var(--primary)', display: 'flex', alignItems: 'flex-start' }}>
-                  <Briefcase size={32} />
-                </motion.div>
-                <div>
-                  <h4 style={{ fontSize: '1.4rem', fontWeight: 600 }}>Junior Sales Associate (Part-time)</h4>
-                  <p style={{ fontSize: '1.1rem', color: 'var(--text-muted)', margin: '0.2rem 0 0.2rem 0' }}>Inspire Next Global Inc.</p>
-                  <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)', margin: '0 0 1rem 0', fontStyle: 'italic', opacity: 0.8 }}>
-                    MAIN OFFICE: BGC, Taguig, Metro Manila, Philippines.
-                  </p>
-                  <p style={{ color: 'var(--text-main)', fontSize: '1.05rem', lineHeight: 1.5 }}>
-                    Contributed to generating over 230+ qualified sales leads by engaging with various companies, collaborating with Itech’s Sales Team, and participating in meetings and training sessions to strengthen sales strategies and client engagement.
-                  </p>
+                  <ul style={{ color: 'var(--text-main)', fontSize: '1.05rem', lineHeight: 1.6, paddingLeft: '1.2rem', margin: 0, display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>
+                    <li>Contributed to UI/UX enhancement of the Loopwork platform, architecting the transition to Version 2.0.</li>
+                    <li>Refined the landing page and core dashboard to deliver a more engaging, intuitive, and visually polished experience for users managing 16 integrated multitasking tools.</li>
+                    <li>Successfully performed Quality Assurance for Loopwork Version 2.0, including landing page, login page, and portal page, leveraging ISO Standard Software Testing protocols to ensure high-quality delivery.</li>
+                    <li>Assisted with outbound lead generation by researching target companies, initiating outreach via email, and collaborating with Itech's Sales Team to refine prospecting strategies.</li>
+                    <li>Tracked pipeline activity in Excel/CRM and participated in sales training sessions to strengthen client engagement and prospecting skills.</li>
+                  </ul>
                 </div>
               </motion.div>
             </div>
