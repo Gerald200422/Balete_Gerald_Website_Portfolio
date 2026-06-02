@@ -418,9 +418,8 @@ const ChatAssistant: React.FC = () => {
               height: isMobile ? 'auto' : '500px',
               maxWidth: isMobile ? 'none' : 'calc(100vw - 4rem)',
               maxHeight: isMobile ? 'none' : 'calc(100vh - 4rem)',
-              background: 'rgba(255, 255, 255, 0.85)',
-              backdropFilter: 'blur(30px) saturate(150%)',
-              border: isMobile ? 'none' : '1px solid rgba(255, 255, 255, 0.5)',
+              background: '#ffffff',
+              border: isMobile ? 'none' : '1px solid rgba(0, 0, 0, 0.1)',
               borderRadius: isMobile ? '0' : '24px',
               boxShadow: '0 30px 60px -12px rgba(0,0,0,0.3), 0 0 0 1px rgba(0,0,0,0.05)',
               display: 'flex',
@@ -543,7 +542,7 @@ const ChatAssistant: React.FC = () => {
             <div style={{
               padding: '1rem',
               borderTop: '1px solid rgba(0,0,0,0.05)',
-              background: 'rgba(255,255,255,0.5)',
+              background: '#ffffff',
               display: 'flex',
               flexDirection: 'column',
               gap: '0.8rem'
