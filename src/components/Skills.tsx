@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { 
-  FileCode, Presentation, Settings, ShieldCheck, CheckCircle, 
+  FileCode, Presentation, Settings, CheckCircle, 
   Zap, Target, Users, Clock, Database, Wrench, BarChart, Server, MessageCircle, Briefcase, Lightbulb 
 } from 'lucide-react';
 import { SectionHeader, zoomIn, slideInLeft } from '../App';
