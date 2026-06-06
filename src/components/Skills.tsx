@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { 
   FileCode, Presentation, Settings, ShieldCheck, CheckCircle, 
-  Zap, Target, Users, Clock 
+  Zap, Target, Users, Clock, Database, Wrench, BarChart, Server, MessageCircle, Briefcase, Lightbulb 
 } from 'lucide-react';
 import { SectionHeader, zoomIn, slideInLeft } from '../App';
 
@@ -19,22 +19,37 @@ const Skills: React.FC = () => {
               { 
                 title: "Web Development", 
                 icon: <FileCode size={32} />, 
-                skills: ["HTML5 / CSS3 / JavaScript", "React Frontend", "PHP Backend", "Responsive Design"] 
+                skills: ["HTML, CSS, JavaScript", "PHP, React (exposure)"] 
               },
               { 
-                title: "Design & Prototyping", 
+                title: "UI/UX Design", 
                 icon: <Presentation size={32} />, 
-                skills: ["Figma & Canva", "UI/UX Principles", "Graphic Design", "Video Editing"] 
+                skills: ["Responsive layouts", "Figma prototyping", "Flutter (mobile interface)"] 
               },
               { 
-                title: "Mobile & Systems", 
+                title: "Backend & Programming", 
+                icon: <Server size={32} />, 
+                skills: ["Node.js, Python", "Java, C#"] 
+              },
+              { 
+                title: "Databases", 
+                icon: <Database size={32} />, 
+                skills: ["MySQL, PostgreSQL", "Firebase, Supabase"] 
+              },
+              { 
+                title: "Tools & IDEs", 
+                icon: <Wrench size={32} />, 
+                skills: ["Visual Studio Code", "PyCharm, JetBrains", "GitHub (portfolio available)"] 
+              },
+              { 
+                title: "Data & Analytics", 
+                icon: <BarChart size={32} />, 
+                skills: ["Tableau, Power BI"] 
+              },
+              { 
+                title: "Other", 
                 icon: <Settings size={32} />, 
-                skills: ["Flutter Prototyping", "SQL Databases", "Networking", "Computer Troubleshooting"] 
-              },
-              { 
-                title: "Professional Tools", 
-                icon: <ShieldCheck size={32} />, 
-                skills: ["Git & GitHub", "Visual Studio Code", "Microsoft Office Suite", "Data Entry"] 
+                skills: ["Basic video editing", "Canva graphics", "Microsoft Office Suite"] 
               }
             ].map((domain) => (
               <motion.div
@@ -79,11 +94,13 @@ const Skills: React.FC = () => {
           <SectionHeader title="Soft Skills." subtitle="The human side of engineering." />
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1.5rem' }}>
             {[
-              { title: "Adaptability", icon: <Zap size={24} />, desc: "Willingness to learn new tech" },
-              { title: "Precision", icon: <Target size={24} />, desc: "Strong attention to detail" },
-              { title: "Synergy", icon: <Users size={24} />, desc: "Communication & teamwork" },
-              { title: "Reliability", icon: <Clock size={24} />, desc: "Management & prioritization" },
-              { title: "Dedication", icon: <Target size={24} />, desc: "Responsible & goal-oriented" }
+              { title: "Precision", icon: <Target size={24} />, desc: "Strong attention to detail & QA mindset" },
+              { title: "Teamwork", icon: <Users size={24} />, desc: "Effective communication across teams" },
+              { title: "Time Management", icon: <Clock size={24} />, desc: "Task prioritization under deadlines" },
+              { title: "Adaptability", icon: <Zap size={24} />, desc: "Adaptability to new tech and workflows" },
+              { title: "Problem-Solving", icon: <Lightbulb size={24} />, desc: "Proactive and goal-oriented" },
+              { title: "Communication", icon: <MessageCircle size={24} />, desc: "Strong verbal and written skills" },
+              { title: "Client Engagement", icon: <Briefcase size={24} />, desc: "Collaboration & consulting support" }
             ].map((skill, i) => (
               <motion.div
                 key={i}
