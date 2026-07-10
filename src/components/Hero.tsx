@@ -158,6 +158,23 @@ const Hero: React.FC = () => {
 
         </motion.div>
       </div>
+
+      {/* Smooth Transition Divider to Projects section */}
+      <div 
+        style={{
+          position: 'absolute',
+          bottom: 0,
+          left: 0,
+          width: '100%',
+          height: '30px',
+          background: 'linear-gradient(to bottom, transparent 0%, var(--bg-card) 100%)',
+          backdropFilter: 'blur(5px)',
+          WebkitBackdropFilter: 'blur(5px)',
+          boxShadow: '0 -4px 30px rgba(0, 0, 0, 0.05)',
+          zIndex: 3,
+          pointerEvents: 'none'
+        }}
+      />
     </section>
   );
 };
