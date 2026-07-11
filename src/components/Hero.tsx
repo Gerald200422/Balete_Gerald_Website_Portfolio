@@ -1,19 +1,46 @@
 import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { staggerContainer } from '../App';
 
 const ROLES = [
-  "Passionate Software Developer", 
-  "Crafting clean, scalable applications", 
-  "Turning complex problems into elegant solutions",
-  "Continuous learner & tech enthusiast"
+  "Full Stack Software Developer | Building scalable solutions",
+  "UI/UX Designer | Crafting intuitive user experiences",
+  "QA Tester | Ensuring quality and reliability",
+  "Outbound Sales Support | Driving customer success"
+];
+
+const BG_IMAGES = [
+  { src: "/1000020201.jpg", type: "zoom" },
+  { src: "/bg1.jpg", type: "pan-up" },
+  { src: "/bg2.jpg", type: "pan-up" },
+  { src: "/bg3.jpg", type: "zoom" },
+  { src: "/bg4.jpg", type: "pan-up" },
+  { src: "/bg5.jpg", type: "pan-up" },
+  { src: "/bg6.jpg", type: "pan-up" }
 ];
 
 const Hero: React.FC = () => {
   const [roleIndex, setRoleIndex] = useState(0);
   const [displayedText, setDisplayedText] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
+  const [bgIndex, setBgIndex] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
 
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < window.innerHeight);
+    handleResize(); // Initial check
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  const getTransitionType = (bg: { src: string, type: string }) => {
+    if (isMobile) {
+      return (bg.src === "/1000020201.jpg" || bg.src === "/bg3.jpg") ? "pan-right" : "zoom";
+    }
+    return bg.type;
+  };
+
+  // Text typing effect
   useEffect(() => {
     let timer: ReturnType<typeof setTimeout>;
     const currentRole = ROLES[roleIndex];
@@ -42,6 +69,15 @@ const Hero: React.FC = () => {
     return () => clearTimeout(timer);
   }, [displayedText, isDeleting, roleIndex]);
 
+  // Background image transition
+  useEffect(() => {
+    const bgTimer = setInterval(() => {
+      setBgIndex((prev) => (prev + 1) % BG_IMAGES.length);
+    }, 5000); // Change image every 7 seconds
+
+    return () => clearInterval(bgTimer);
+  }, []);
+
   return (
     <section 
       id="hero" 
@@ -55,28 +91,53 @@ const Hero: React.FC = () => {
         justifyContent: 'center' 
       }}
     >
-      {/* Background Image */}
-      <motion.img
-        src="/1000020201.jpg"
-        alt="Hero Background"
-        style={{ 
-          position: 'absolute', 
-          top: 0, 
-          left: 0, 
-          width: '100%', 
-          height: '100%', 
-          objectFit: 'cover', 
-          zIndex: 0 
-        }}
-        animate={{
-          scale: [1, 1.1, 1],
-        }}
-        transition={{
-          duration: 20, // Slow, smooth zoom
-          repeat: Infinity,
-          ease: "easeInOut"
-        }}
-      />
+      {/* Background Image Slider */}
+      <AnimatePresence>
+        <motion.img
+          key={bgIndex}
+          src={BG_IMAGES[bgIndex].src}
+          alt={`Hero Background ${bgIndex + 1}`}
+          style={{ 
+            position: 'absolute', 
+            top: 0, 
+            left: 0, 
+            width: '100%', 
+            height: '100%', 
+            objectFit: 'cover', 
+            zIndex: 0 
+          }}
+          initial={
+            getTransitionType(BG_IMAGES[bgIndex]) === "pan-up" 
+              ? { opacity: 0, objectPosition: '50% 100%', scale: 1.05, zIndex: 1 }
+              : getTransitionType(BG_IMAGES[bgIndex]) === "pan-right"
+              ? { opacity: 0, objectPosition: '0% 50%', scale: 1, zIndex: 1 }
+              : { opacity: 0, scale: 1, zIndex: 1 }
+          }
+          animate={
+            getTransitionType(BG_IMAGES[bgIndex]) === "pan-up" 
+              ? { opacity: 1, objectPosition: '50% 0%', scale: 1, zIndex: 1 }
+              : getTransitionType(BG_IMAGES[bgIndex]) === "pan-right"
+              ? { opacity: 1, objectPosition: '100% 50%', scale: 1, zIndex: 1 }
+              : { opacity: 1, scale: [1, 1.1, 1], zIndex: 1 }
+          }
+          exit={{ opacity: 0.99, zIndex: 0 }} // Prevents dark background from showing through during crossfade
+          transition={{
+            opacity: { duration: 1.5, ease: 'easeInOut' },
+            ...(getTransitionType(BG_IMAGES[bgIndex]) === "pan-up" 
+              ? {
+                  objectPosition: { duration: 10, ease: 'linear' },
+                  scale: { duration: 10, ease: 'linear' }
+                }
+              : getTransitionType(BG_IMAGES[bgIndex]) === "pan-right"
+              ? {
+                  objectPosition: { duration: 15, ease: 'linear' }
+                }
+              : {
+                  scale: { duration: 20, ease: "easeInOut", repeat: Infinity }
+                })
+          }}
+        />
+      </AnimatePresence>
 
       {/* Dark & Blurred Overlay */}
       <div 
