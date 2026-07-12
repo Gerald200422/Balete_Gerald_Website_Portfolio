@@ -16,7 +16,8 @@ const BG_IMAGES = [
   { src: "/bg3.jpg", type: "zoom" },
   { src: "/bg4.jpg", type: "pan-up" },
   { src: "/bg5.jpg", type: "pan-up" },
-  { src: "/bg6.jpg", type: "pan-up" }
+  { src: "/bg6.jpg", type: "pan-up" },
+  { src: "/bg7.jpg", type: "zoom" }
 ];
 
 const Hero: React.FC = () => {
@@ -35,7 +36,7 @@ const Hero: React.FC = () => {
 
   const getTransitionType = (bg: { src: string, type: string }) => {
     if (isMobile) {
-      return (bg.src === "/1000020201.jpg" || bg.src === "/bg3.jpg") ? "pan-right" : "zoom";
+      return (bg.src === "/1000020201.jpg" || bg.src === "/bg3.jpg" || bg.src === "/bg7.jpg") ? "pan-right" : "zoom";
     }
     return bg.type;
   };
