@@ -13,6 +13,7 @@ import Contact from './components/Contact';
 import Footer from './components/Footer';
 import BackToTop from './components/BackToTop';
 import ChatAssistant from './components/ChatAssistant';
+import ResumeGuideCursor from './components/ResumeGuideCursor';
 
 // --- SHARED ANIMATION VARIANTS ---
 export const blurReveal: Variants = {
@@ -124,6 +125,7 @@ const App: React.FC = () => {
       <Footer />
       <BackToTop />
       <ChatAssistant />
+      <ResumeGuideCursor />
     </div>
   );
 };
